@@ -238,6 +238,205 @@
             
               
                 
+                <a class="post-title-link" href="/2016/09/06/Array-String-MathFunction/" itemprop="url">
+                  未命名
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-06T06:39:17+08:00" content="2016-09-06">
+              2016-09-06
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="数组方法里push、pop、shift、unshift、join、split分别是什么作用"><a href="#数组方法里push、pop、shift、unshift、join、split分别是什么作用" class="headerlink" title="数组方法里push、pop、shift、unshift、join、split分别是什么作用?"></a>数组方法里push、pop、shift、unshift、join、split分别是什么作用?</h1><ul>
+<li>push()方法: 在数组的最后添加一个或者多个元素,并且返回当前的length。<pre><code>var a = [1,2,3,4];
+a.push(5);
+console.log(a);      // a = [1,2,3,4,5]
+console.log(a.length);  // 5
+a.push(6,7,8);
+console.log(a);    // a = [1,2,3,4,5,6,7,8]
+console.log(a.length);  // 8
+</code></pre></li>
+</ul>
+<hr>
+<ul>
+<li>pop()方法:用于删除并返回数组的最后一个元素。<pre><code>var a = [1,2,3,4];
+a.pop();            //返回删除的值 4；
+console.log(a);     //  a = [1,2,3]
+console.log(a.length);  //  3
+</code></pre></li>
+</ul>
+<hr>
+<ul>
+<li>shift()方法：用于删除并返回数组的最前面一个元素。<pre><code>var a = [1,2,3,4];
+a.shift();            //返回删除的值 1；
+console.log(a);     //  a = [2,3,4]
+console.log(a.length);  //  3
+</code></pre></li>
+</ul>
+<hr>
+<ul>
+<li>unshift()方法：在数组的最前面添加一个或者多个元素，并返回当前的length。<pre><code>var a = [1,2,3,4];
+a.unshift(0);
+console.log(a);      // a = [0,1,2,3,4]
+console.log(a.length);  // 5
+a.unshift(-3,-2,-1);
+console.log(a);    // a = [-3,-2,-1,0,1,2,3,4]
+console.log(a.length);  // 8
+</code></pre></li>
+</ul>
+<hr>
+<ul>
+<li>jion()方法：把数组元素（对象调用其toString()方法）使用参数作为连接符连接成一字符串，不会修改原数组内容。<pre><code>var a = [1,2,3,4];
+console.log(a.join());//不填写参数时默认逗号作为连接符 &quot;1,2,3,4&quot;
+console.log(a.join(&quot;&quot;)); //参数为空字符串时输出  &quot;1234&quot;
+console.log(a.join(&quot;-&quot;));  // &quot;1-2-3-4&quot;
+console.log(typeof a);  //  object
+console.log(a);       // [1,2,3,4]
+</code></pre></li>
+</ul>
+<hr>
+<ul>
+<li><p>split()方法：把一个字符串分割成字符串数组。默认不输入参数时字符串整体作为一项数组。有两个参数，第一个参数作为分隔符来分隔元素，第二个是分割出来的数组项个数。</p>
+<pre><code>var a = &quot;1a2b3c4d&quot;;
+console.log(a.split());        // [&quot;1a2b3c4d&quot;]
+console.log(a.split(&quot;b&quot;));     //[&quot;1a2&quot;, &quot;3c4d5e&quot;]
+console.log(a.split(&quot;&quot;));      //[&quot;1&quot;, &quot;a&quot;, &quot;2&quot;, &quot;b&quot;, &quot;3&quot;, &quot;c&quot;, &quot;4&quot;, &quot;d&quot;, &quot;5&quot;, &quot;e&quot;]
+console.log(a.split(&quot;&quot;,3));    //[&quot;1&quot;,&quot;a&quot;,&quot;2&quot;]   
+console.log(typeof a);        //&quot;string&quot;
+</code></pre></li>
+</ul>
+<hr>
+<h1 id="代码部分："><a href="#代码部分：" class="headerlink" title="代码部分："></a>代码部分：</h1><h5 id="1-用-splice-实现-push、pop、shift、unshift方法"><a href="#1-用-splice-实现-push、pop、shift、unshift方法" class="headerlink" title="1. 用 splice 实现 push、pop、shift、unshift方法?"></a>1. 用 splice 实现 push、pop、shift、unshift方法?</h5><pre><code>var a = [1,2,3,4];
+console.log(a.splice(4,0,5));   //push()  
+console.log(a);             //[1,2,3,4,5]
+console.log(a.length);       //   5
+console.log(a.splice(4,1)[0]);   //pop()   5
+console.log(a);                // [1,2,3,4]
+console.log(a.length);       //   4
+console.log(a.splice(0,1)[0])    //shift()  1
+console.log(a);               //  [2,3,4]
+console.log(a.length);          // 3
+console.log(a.splice(0,0,1));     //unshift()
+console.log(a);                 //[1,2,3,4]
+console.log(a.length);         // 4
+</code></pre><hr>
+<h5 id="2-使用数组拼接出如下字符串？"><a href="#2-使用数组拼接出如下字符串？" class="headerlink" title="2. 使用数组拼接出如下字符串？"></a>2. 使用数组拼接出如下字符串？</h5><pre><code>var prod = {
+    name: &apos;女装&apos;,
+    styles: [&apos;短款&apos;, &apos;冬季&apos;, &apos;春装&apos;]
+};
+function getTplStr(data){
+  product = [];
+  product.push(&quot;&lt;dl class=&apos;product&apos;&gt;&quot;);
+  product.push(&quot;&lt;dt&gt;&quot;+data.name+&quot;&lt;/dt&gt;&quot;);
+  for(var i = 0; i &lt; data.styles.length; i++){
+    product.push(&quot;&lt;dd&gt;&quot; + data.styles[i] + &quot;&lt;/dd&gt;&quot;);
+  }
+  product.push(&quot;&lt;/dl&gt;&quot;);
+  console.log(product.join(&quot;&quot;));
+};
+var result = getTplStr(prod);  //result为下面的字符串
+
+&lt;dl class=&quot;product&quot;&gt;
+    &lt;dt&gt;女装&lt;/dt&gt;
+    &lt;dd&gt;短款&lt;/dd&gt;
+    &lt;dd&gt;冬季&lt;/dd&gt;
+    &lt;dd&gt;春装&lt;/dd&gt;
+&lt;/dl&gt;
+</code></pre><hr>
+<h5 id="3-写一个find函数，实现下面的功能"><a href="#3-写一个find函数，实现下面的功能" class="headerlink" title="3. 写一个find函数，实现下面的功能:"></a>3. 写一个find函数，实现下面的功能:</h5><pre><code>  var arr = [ &quot;test&quot;, 2, 1.5, false ]
+  find(arr, &quot;test&quot;) // 0
+  find(arr, 2) // 1
+  find(arr, 0) // -1
+
+function find(){
+
+
+
+}
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/09/01/JS-Function/" itemprop="url">
                   JS Function
                 </a>
@@ -896,7 +1095,7 @@ console.log(b);     //  is not defined;
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-count">4</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
