@@ -1,0 +1,874 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="数组方法里push、pop、shift、unshift、join、split分别是什么作用?
+push()方法: 在数组的最后添加一个或者多个元素,并且返回当前的length。var a = [1,2,3,4];
+a.push(5);
+console.log(a);      // a = [1,2,3,4,5]
+console.log(a.length);  // 5
+a.push(6,7,8)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Array-String-MathFunction">
+<meta property="og:url" content="http://yoursite.com/2016/09/11/Array-String-MathFunction/index.html">
+<meta property="og:site_name" content="小墨墨教我学前端">
+<meta property="og:description" content="数组方法里push、pop、shift、unshift、join、split分别是什么作用?
+push()方法: 在数组的最后添加一个或者多个元素,并且返回当前的length。var a = [1,2,3,4];
+a.push(5);
+console.log(a);      // a = [1,2,3,4,5]
+console.log(a.length);  // 5
+a.push(6,7,8)">
+<meta property="og:updated_time" content="2016-09-11T14:23:46.240Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Array-String-MathFunction">
+<meta name="twitter:description" content="数组方法里push、pop、shift、unshift、join、split分别是什么作用?
+push()方法: 在数组的最后添加一个或者多个元素,并且返回当前的length。var a = [1,2,3,4];
+a.push(5);
+console.log(a);      // a = [1,2,3,4,5]
+console.log(a.length);  // 5
+a.push(6,7,8)">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/09/11/Array-String-MathFunction/"/>
+
+  <title> Array-String-MathFunction | 小墨墨教我学前端 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">小墨墨教我学前端</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">哈哈哈</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Array-String-MathFunction
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-11T22:22:54+08:00" content="2016-09-11">
+              2016-09-11
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="数组方法里push、pop、shift、unshift、join、split分别是什么作用"><a href="#数组方法里push、pop、shift、unshift、join、split分别是什么作用" class="headerlink" title="数组方法里push、pop、shift、unshift、join、split分别是什么作用?"></a>数组方法里push、pop、shift、unshift、join、split分别是什么作用?</h1><ul>
+<li>push()方法: 在数组的最后添加一个或者多个元素,并且返回当前的length。<pre><code>var a = [1,2,3,4];
+a.push(5);
+console.log(a);      // a = [1,2,3,4,5]
+console.log(a.length);  // 5
+a.push(6,7,8);
+console.log(a);    // a = [1,2,3,4,5,6,7,8]
+console.log(a.length);  // 8
+</code></pre></li>
+</ul>
+<hr>
+<ul>
+<li>pop()方法:用于删除并返回数组的最后一个元素。<pre><code>var a = [1,2,3,4];
+a.pop();            //返回删除的值 4；
+console.log(a);     //  a = [1,2,3]
+console.log(a.length);  //  3
+</code></pre></li>
+</ul>
+<hr>
+<ul>
+<li>shift()方法：用于删除并返回数组的最前面一个元素。<pre><code>var a = [1,2,3,4];
+a.shift();            //返回删除的值 1；
+console.log(a);     //  a = [2,3,4]
+console.log(a.length);  //  3
+</code></pre></li>
+</ul>
+<hr>
+<ul>
+<li>unshift()方法：在数组的最前面添加一个或者多个元素，并返回当前的length。<pre><code>var a = [1,2,3,4];
+a.unshift(0);
+console.log(a);      // a = [0,1,2,3,4]
+console.log(a.length);  // 5
+a.unshift(-3,-2,-1);
+console.log(a);    // a = [-3,-2,-1,0,1,2,3,4]
+console.log(a.length);  // 8
+</code></pre></li>
+</ul>
+<hr>
+<ul>
+<li>jion()方法：把数组元素（对象调用其toString()方法）使用参数作为连接符连接成一字符串，不会修改原数组内容。<pre><code>var a = [1,2,3,4];
+console.log(a.join());//不填写参数时默认逗号作为连接符 &quot;1,2,3,4&quot;
+console.log(a.join(&quot;&quot;)); //参数为空字符串时输出  &quot;1234&quot;
+console.log(a.join(&quot;-&quot;));  // &quot;1-2-3-4&quot;
+console.log(typeof a);  //  object
+console.log(a);       // [1,2,3,4]
+</code></pre></li>
+</ul>
+<hr>
+<ul>
+<li><p>split()方法：把一个字符串分割成字符串数组。默认不输入参数时字符串整体作为一项数组。有两个参数，第一个参数作为分隔符来分隔元素，第二个是分割出来的数组项个数。</p>
+<pre><code>var a = &quot;1a2b3c4d&quot;;
+console.log(a.split());        // [&quot;1a2b3c4d&quot;]
+console.log(a.split(&quot;b&quot;));     //[&quot;1a2&quot;, &quot;3c4d5e&quot;]
+console.log(a.split(&quot;&quot;));      //[&quot;1&quot;, &quot;a&quot;, &quot;2&quot;, &quot;b&quot;, &quot;3&quot;, &quot;c&quot;, &quot;4&quot;, &quot;d&quot;, &quot;5&quot;, &quot;e&quot;]
+console.log(a.split(&quot;&quot;,3));    //[&quot;1&quot;,&quot;a&quot;,&quot;2&quot;]   
+console.log(typeof a);        //&quot;string&quot;
+</code></pre></li>
+</ul>
+<hr>
+<ul>
+<li><p>reverse()方法：颠倒数组中元素的顺序，修改并返回改变后的数组。</p>
+<pre><code>var a = [1,2,3,4,5];
+a.reverse();
+console.log(a);   //  [5,4,3,2,1];
+</code></pre></li>
+</ul>
+<hr>
+<ul>
+<li><p>slice()方法：提取原数组的一部分，返回一个新数组，原数组不变。</p>
+<pre><code>var a = [1,2,3,4,5];
+console.log(a.slice());  // [1,2,3,4,5]
+console.log(a.slice(3));  //[4,5]
+console.log(a.slice(0,3)); //[1,2,3]
+console.log(a.slice(-3,-1));  //[3,4] 参数为负数表示倒数位置。
+console.log(a);   //[1,2,3,4,5]  原数组不变。
+</code></pre></li>
+</ul>
+<hr>
+<ul>
+<li><p>map()方法：对数组的所有成员依次调用一个函数，根据函数结果返回一个新数组,原数组不变。</p>
+<pre><code>var a = [1,2,3,4,5];
+console.log(a.map(function ( n ){
+               return n + 1;
+}));    //[2,3,4,5,6]
+ console.log(a)；  // [1,2,3,4,5]
+</code></pre></li>
+</ul>
+<hr>
+<h1 id="代码部分："><a href="#代码部分：" class="headerlink" title="代码部分："></a>代码部分：</h1><h5 id="1-用-splice-实现-push、pop、shift、unshift方法"><a href="#1-用-splice-实现-push、pop、shift、unshift方法" class="headerlink" title="1. 用 splice 实现 push、pop、shift、unshift方法?"></a>1. 用 splice 实现 push、pop、shift、unshift方法?</h5><pre><code>var a = [1,2,3,4];
+console.log(a.splice(4,0,5));   //push()  
+console.log(a);             //[1,2,3,4,5]
+console.log(a.length);       //   5
+console.log(a.splice(4,1)[0]);   //pop()   5
+console.log(a);                // [1,2,3,4]
+console.log(a.length);       //   4
+console.log(a.splice(0,1)[0])    //shift()  1
+console.log(a);               //  [2,3,4]
+console.log(a.length);          // 3
+console.log(a.splice(0,0,1));     //unshift()
+console.log(a);                 //[1,2,3,4]
+console.log(a.length);         // 4
+</code></pre><hr>
+<h5 id="2-使用数组拼接出如下字符串？"><a href="#2-使用数组拼接出如下字符串？" class="headerlink" title="2. 使用数组拼接出如下字符串？"></a>2. 使用数组拼接出如下字符串？</h5><pre><code>var prod = {
+    name: &apos;女装&apos;,
+    styles: [&apos;短款&apos;, &apos;冬季&apos;, &apos;春装&apos;]
+};
+function getTplStr(data){
+  product = [];
+  product.push(&quot;&lt;dl class=&apos;product&apos;&gt;&quot;);
+  product.push(&quot;&lt;dt&gt;&quot;+data.name+&quot;&lt;/dt&gt;&quot;);
+  for(var i = 0; i &lt; data.styles.length; i++){
+    product.push(&quot;&lt;dd&gt;&quot; + data.styles[i] + &quot;&lt;/dd&gt;&quot;);
+  }
+  product.push(&quot;&lt;/dl&gt;&quot;);
+  console.log(product.join(&quot;&quot;));
+};
+var result = getTplStr(prod);  //result为下面的字符串
+
+&lt;dl class=&quot;product&quot;&gt;
+    &lt;dt&gt;女装&lt;/dt&gt;
+    &lt;dd&gt;短款&lt;/dd&gt;
+    &lt;dd&gt;冬季&lt;/dd&gt;
+    &lt;dd&gt;春装&lt;/dd&gt;
+&lt;/dl&gt;
+</code></pre><hr>
+<h5 id="3-写一个find函数，实现下面的功能"><a href="#3-写一个find函数，实现下面的功能" class="headerlink" title="3. 写一个find函数，实现下面的功能:"></a>3. 写一个find函数，实现下面的功能:</h5><pre><code>  var arr = [ &quot;test&quot;, 2, 1.5, false ]
+  find(arr, &quot;test&quot;) // 0
+  find(arr, 2) // 1
+  find(arr, 0) // -1
+
+function find(arr,vealue){
+    console.log(arr.indexOf(vealue));
+}
+</code></pre><hr>
+<h5 id="4-写一个函数filterNumeric，把数组-arr-中的数字过滤出来赋值给新数组newarr，-原数组arr不变。"><a href="#4-写一个函数filterNumeric，把数组-arr-中的数字过滤出来赋值给新数组newarr，-原数组arr不变。" class="headerlink" title="4. 写一个函数filterNumeric，把数组 arr 中的数字过滤出来赋值给新数组newarr， 原数组arr不变。"></a>4. 写一个函数filterNumeric，把数组 arr 中的数字过滤出来赋值给新数组newarr， 原数组arr不变。</h5><pre><code>  arr = [&quot;a&quot;, &quot;b&quot;, 1, 3, 5, &quot;b&quot;, 2];
+  function filterNumeric(arr){
+    var newarr =  arr.filter(function(elem){
+    return (typeof elem === &apos;number&apos;);
+    })
+   return newarr;
+  }
+
+ newarr = filterNumeric(arr);  //   [1,3,5,2]
+/*
+ arr = [&quot;a&quot;, &quot;b&quot;, 1, 3, 5, &quot;b&quot;, 2];
+ function filterNumeric(arr){
+   var newarr = [];
+   for (var i = 0; i &lt; arr.length; i++){
+      if(!isNaN(arr[i])){
+        newarr.push(arr[i]);
+      }
+   }
+     return newarr;
+ }
+   newarr = filterNumeric(arr);  //   [1,3,5,2]
+ */
+</code></pre><hr>
+<h5 id="5-对象obj有个className属性，里面的值为的是空格分割的字符串-和html元素的class特性类似-，写addClass、removeClass函数，有如下功能："><a href="#5-对象obj有个className属性，里面的值为的是空格分割的字符串-和html元素的class特性类似-，写addClass、removeClass函数，有如下功能：" class="headerlink" title="5. 对象obj有个className属性，里面的值为的是空格分割的字符串(和html元素的class特性类似)，写addClass、removeClass函数，有如下功能："></a>5. 对象obj有个className属性，里面的值为的是空格分割的字符串(和html元素的class特性类似)，写addClass、removeClass函数，有如下功能：</h5><pre><code>var obj = {
+    className: &apos;open menu&apos;
+}
+
+function addClass(obj, value) {
+    var tempArray = obj.className.split(&quot; &quot;);
+    for (var i = 0; i &lt; tempArray.length; i++) {
+        if (tempArray[i] === value) {
+            return obj.className
+        }
+        tempArray.push(value);
+        return obj.className = tempArray.join(&quot; &quot;);
+    }
+}
+
+
+function removeClass(obj, value) {
+    var tempArray = obj.className.split(&quot; &quot;);
+    for (var i = 0; i &lt; tempArray.length; i++) {
+        if (tempArray[i] === value) {
+            tempArray.splice(i, 1);
+        }
+
+        return obj.className = tempArray.join(&quot; &quot;);
+    }
+}
+addClass(obj, &apos;new&apos;) // obj.className=&apos;open menu new&apos;
+addClass(obj, &apos;open&apos;)  // 因为open已经存在，所以不会再次添加open
+addClass(obj, &apos;me&apos;) // me不存在，所以 obj.className变为&apos;open menu new me&apos;
+console.log(obj.className)  // &quot;open menu new me&quot;
+
+removeClass(obj, &apos;open&apos;) // 去掉obj.className里面的 open，变成&apos;menu new me&apos;
+removeClass(obj, &apos;blabla&apos;)  // 因为blabla不存在，所以此操作无任何影响
+</code></pre><hr>
+<h5 id="6-写一个camelize函数，把my-short-string形式的字符串转化成myShortString形式的字符串，如"><a href="#6-写一个camelize函数，把my-short-string形式的字符串转化成myShortString形式的字符串，如" class="headerlink" title="6. 写一个camelize函数，把my-short-string形式的字符串转化成myShortString形式的字符串，如:"></a>6. 写一个camelize函数，把my-short-string形式的字符串转化成myShortString形式的字符串，如:</h5><pre><code>camelize(&quot;background-color&quot;) == &apos;backgroundColor&apos;
+camelize(&quot;list-style-image&quot;) == &apos;listStyleImage&apos;
+function camelize(str) {
+    var tempArray = str.split(&quot;&quot;);
+    for (var i = 0; i &lt; tempArray.length; i++) {
+        if (tempArray[i] === &quot;-&quot;) {
+            tempArray.splice(i, 1);
+        }
+    }
+    return tempArray.join(&quot;&quot;);
+}
+</code></pre><hr>
+<h5 id="7-如下代码输出什么？为什么"><a href="#7-如下代码输出什么？为什么" class="headerlink" title="7. 如下代码输出什么？为什么?"></a>7. 如下代码输出什么？为什么?</h5><pre><code>arr = [&quot;a&quot;, &quot;b&quot;];    //声明一个数组
+arr.push( function() { alert(console.log(&apos;hello hunger valley&apos;)) } ); //arr[&quot;a&quot;,&quot;b&quot;,function()]
+arr[arr.length-1]()   //function()输出&apos;hello hunger valley&apos;，弹窗 undefined
+</code></pre><hr>
+<h5 id="8-写一个函数filterNumericInPlace，过滤数组中的数字，删除非数字。要求在原数组上操作"><a href="#8-写一个函数filterNumericInPlace，过滤数组中的数字，删除非数字。要求在原数组上操作" class="headerlink" title="8. 写一个函数filterNumericInPlace，过滤数组中的数字，删除非数字。要求在原数组上操作?"></a>8. 写一个函数filterNumericInPlace，过滤数组中的数字，删除非数字。要求在原数组上操作?</h5><pre><code>     arr = [&quot;a&quot;, &quot;b&quot;, 1, 3, 4, 5, &quot;b&quot;, 2];
+     //对原数组进行操作，不需要返回值
+
+     function filterNumericInPlace(arr) {
+         for (var i = 0; i &lt; arr.length; i++) {
+             if (typeof arr[i] !== &quot;number&quot;) {
+                 arr.splice(i, 1);
+                 i--
+             }
+         }
+     }
+     filterNumericInPlace(arr);
+     console.log(arr)  // [1,3,4,5,2]
+
+*注*：i--这个步骤在第一次没有想到，结果得到的是[&quot;b&quot;, 1, 3, 4, 5, 2]，因为当删除了原数组的元素后,arr[i]已悄然改变。
+
+  /*
+  function filterNumericInPlace(arr) {
+      for (var i = arr.length - 1; i &gt;= 0; i--) {
+          if (typeof arr[i] !== &quot;number&quot;) {
+              arr.splice(i, 1);
+          }
+      }
+  }
+   */
+</code></pre><h5 id="9-写一个ageSort函数实现数组中对象按age从小到大排序"><a href="#9-写一个ageSort函数实现数组中对象按age从小到大排序" class="headerlink" title="9. 写一个ageSort函数实现数组中对象按age从小到大排序."></a>9. 写一个ageSort函数实现数组中对象按age从小到大排序.</h5><pre><code>var john = { name: &quot;John Smith&quot;, age: 23 }
+var mary = { name: &quot;Mary Key&quot;, age: 18 }
+var bob = { name: &quot;Bob-small&quot;, age: 6 }
+var people = [ john, mary, bob ]
+
+function ageSort(people) {
+    people.sort(function(a, b) {
+        if (a.age &lt; b.age) {         //    return    a.age - b.age
+            return -1;
+        }
+        if (a.age &gt; b.age) {
+            return 1;
+        }
+    })
+}
+</code></pre><p>  ageSort(people) // [ bob, mary, john ]</p>
+<h5 id="10-写一个filter-arr-func-函数用于过滤数组，接受两个参数，第一个是要处理的数组，第二个参数是回调函数-回调函数遍历接受每一个数组元素，当函数返回true时保留该元素，否则删除该元素-。实现如下功能"><a href="#10-写一个filter-arr-func-函数用于过滤数组，接受两个参数，第一个是要处理的数组，第二个参数是回调函数-回调函数遍历接受每一个数组元素，当函数返回true时保留该元素，否则删除该元素-。实现如下功能" class="headerlink" title="10. 写一个filter(arr, func) 函数用于过滤数组，接受两个参数，第一个是要处理的数组，第二个参数是回调函数(回调函数遍历接受每一个数组元素，当函数返回true时保留该元素，否则删除该元素)。实现如下功能:"></a>10. 写一个filter(arr, func) 函数用于过滤数组，接受两个参数，第一个是要处理的数组，第二个参数是回调函数(回调函数遍历接受每一个数组元素，当函数返回true时保留该元素，否则删除该元素)。实现如下功能:</h5><pre><code>arr = [&quot;a&quot;,3,4,true, -1, 2, &quot;b&quot;]
+function isNumeric(el) {
+    return typeof el === &apos;number&apos;;
+}
+
+function filter(arr,fn){
+      for(var i = arr.length-1; i &gt;= 0 ; i--){
+        if(!fn(arr[i])){
+          arr.splice(i,1);
+        }
+      }return arr
+}        
+arr = filter(arr, isNumeric) ; // arr = [3,4,-1, 2],  过滤出数字
+arr = filter(arr, function(val) { return  typeof val === &quot;number&quot; &amp;&amp; val &gt; 0 });  // arr = [3,4,2] 过滤出大于0的整数
+</code></pre><hr>
+<h5 id="11-写一个-ucFirst函数，返回第一个字母为大写的字符"><a href="#11-写一个-ucFirst函数，返回第一个字母为大写的字符" class="headerlink" title="11. 写一个 ucFirst函数，返回第一个字母为大写的字符"></a>11. 写一个 ucFirst函数，返回第一个字母为大写的字符</h5><pre><code>ucFirst(&quot;hunger&quot;) == &quot;Hunger&quot;   //true
+function ucFirst(str) {
+    return str[0].toUpperCase() + str.substring(1)
+}
+</code></pre><hr>
+<h5 id="12-写一个函数truncate-str-maxlength-如果str的长度大于maxlength，会把str截断到maxlength长，并加上…"><a href="#12-写一个函数truncate-str-maxlength-如果str的长度大于maxlength，会把str截断到maxlength长，并加上…" class="headerlink" title="12. 写一个函数truncate(str, maxlength), 如果str的长度大于maxlength，会把str截断到maxlength长，并加上…"></a>12. 写一个函数truncate(str, maxlength), 如果str的长度大于maxlength，会把str截断到maxlength长，并加上…</h5><pre><code>truncate(&quot;hello, this is hunger valley,&quot;, 10) == &quot;hello, thi...&quot;;
+truncate(&quot;hello world&quot;, 20)) == &quot;hello world&quot;
+
+function truncate(str,maxlength){
+  if(str.length &gt; maxlength ){
+    return str.substring(0,maxlength) + &quot;...&quot;
+  } else {
+    return str
+  }
+}
+</code></pre><hr>
+<h1 id="数学函数："><a href="#数学函数：" class="headerlink" title="数学函数："></a>数学函数：</h1><h5 id="1-写一个函数，获取从min到max之间的随机整数，包括min不包括max"><a href="#1-写一个函数，获取从min到max之间的随机整数，包括min不包括max" class="headerlink" title="1. 写一个函数，获取从min到max之间的随机整数，包括min不包括max"></a>1. 写一个函数，获取从min到max之间的随机整数，包括min不包括max</h5><pre><code>function getRandom(min,max) {
+  return  Math.floor(Math.random() * max - min)+Math.floor(min);
+}
+</code></pre><hr>
+<h5 id="2-写一个函数，获取从min都max之间的随机整数，包括min包括max"><a href="#2-写一个函数，获取从min都max之间的随机整数，包括min包括max" class="headerlink" title="2. 写一个函数，获取从min都max之间的随机整数，包括min包括max"></a>2. 写一个函数，获取从min都max之间的随机整数，包括min包括max</h5><pre><code>function getRandom(min,max) {
+  return  Math.floor(Math.random() * max - min +1)+Math.floor(min);
+}
+</code></pre><hr>
+<h5 id="3-写一个函数，获取一个随机数组，数组中元素为长度为len，最小值为min，最大值为max-包括-的随机整数"><a href="#3-写一个函数，获取一个随机数组，数组中元素为长度为len，最小值为min，最大值为max-包括-的随机整数" class="headerlink" title="3. 写一个函数，获取一个随机数组，数组中元素为长度为len，最小值为min，最大值为max(包括)的随机整数"></a>3. 写一个函数，获取一个随机数组，数组中元素为长度为len，最小值为min，最大值为max(包括)的随机整数</h5><pre><code> function getRandomArr(min, max, len) {
+     var arr = [];
+     for (var i = 0; i &lt; len; i++) {
+         arr[i] = Math.floor(min) + Math.floor(Math.random() * (max - min + 1));
+     }
+     return arr;
+}
+</code></pre><hr>
+<h5 id="4-写一个函数，生成一个长度为-n-的随机字符串，字符串字符的取值范围包括0到9，a到-z，A到Z。"><a href="#4-写一个函数，生成一个长度为-n-的随机字符串，字符串字符的取值范围包括0到9，a到-z，A到Z。" class="headerlink" title="4. 写一个函数，生成一个长度为 n 的随机字符串，字符串字符的取值范围包括0到9，a到 z，A到Z。"></a>4. 写一个函数，生成一个长度为 n 的随机字符串，字符串字符的取值范围包括0到9，a到 z，A到Z。</h5><pre><code>function getRandStr(len){
+  //todo...
+}
+var str = getRandStr(10); // 0a3iJiRZap
+
+
+function getRandStr(len) {
+    var scope = &quot;ABCDEFGHIZKLMNOPQRSTUVWXYZ&quot;;
+    scope += &quot;abcdefghizklmnopqrstuvwxyz&quot;;
+    scope += 0123456789;
+    var str = &quot;&quot;;
+    for (i = 0; i &lt; len; i++) {
+        str += scope[Math.floor(Math.random() * scope.length)];
+    }
+    return str;
+}
+</code></pre>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/01/JS-Function/" rel="next" title="JS Function">
+                <i class="fa fa-chevron-left"></i> JS Function
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="chenwei" />
+          <p class="site-author-name" itemprop="name">chenwei</p>
+          <p class="site-description motion-element" itemprop="description">呵呵呵</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数组方法里push、pop、shift、unshift、join、split分别是什么作用"><span class="nav-number">1.</span> <span class="nav-text">数组方法里push、pop、shift、unshift、join、split分别是什么作用?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码部分："><span class="nav-number">2.</span> <span class="nav-text">代码部分：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-用-splice-实现-push、pop、shift、unshift方法"><span class="nav-number">2.0.0.0.1.</span> <span class="nav-text">1. 用 splice 实现 push、pop、shift、unshift方法?</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-使用数组拼接出如下字符串？"><span class="nav-number">2.0.0.0.2.</span> <span class="nav-text">2. 使用数组拼接出如下字符串？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-写一个find函数，实现下面的功能"><span class="nav-number">2.0.0.0.3.</span> <span class="nav-text">3. 写一个find函数，实现下面的功能:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-写一个函数filterNumeric，把数组-arr-中的数字过滤出来赋值给新数组newarr，-原数组arr不变。"><span class="nav-number">2.0.0.0.4.</span> <span class="nav-text">4. 写一个函数filterNumeric，把数组 arr 中的数字过滤出来赋值给新数组newarr， 原数组arr不变。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-对象obj有个className属性，里面的值为的是空格分割的字符串-和html元素的class特性类似-，写addClass、removeClass函数，有如下功能："><span class="nav-number">2.0.0.0.5.</span> <span class="nav-text">5. 对象obj有个className属性，里面的值为的是空格分割的字符串(和html元素的class特性类似)，写addClass、removeClass函数，有如下功能：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-写一个camelize函数，把my-short-string形式的字符串转化成myShortString形式的字符串，如"><span class="nav-number">2.0.0.0.6.</span> <span class="nav-text">6. 写一个camelize函数，把my-short-string形式的字符串转化成myShortString形式的字符串，如:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-如下代码输出什么？为什么"><span class="nav-number">2.0.0.0.7.</span> <span class="nav-text">7. 如下代码输出什么？为什么?</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-写一个函数filterNumericInPlace，过滤数组中的数字，删除非数字。要求在原数组上操作"><span class="nav-number">2.0.0.0.8.</span> <span class="nav-text">8. 写一个函数filterNumericInPlace，过滤数组中的数字，删除非数字。要求在原数组上操作?</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#9-写一个ageSort函数实现数组中对象按age从小到大排序"><span class="nav-number">2.0.0.0.9.</span> <span class="nav-text">9. 写一个ageSort函数实现数组中对象按age从小到大排序.</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#10-写一个filter-arr-func-函数用于过滤数组，接受两个参数，第一个是要处理的数组，第二个参数是回调函数-回调函数遍历接受每一个数组元素，当函数返回true时保留该元素，否则删除该元素-。实现如下功能"><span class="nav-number">2.0.0.0.10.</span> <span class="nav-text">10. 写一个filter(arr, func) 函数用于过滤数组，接受两个参数，第一个是要处理的数组，第二个参数是回调函数(回调函数遍历接受每一个数组元素，当函数返回true时保留该元素，否则删除该元素)。实现如下功能:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#11-写一个-ucFirst函数，返回第一个字母为大写的字符"><span class="nav-number">2.0.0.0.11.</span> <span class="nav-text">11. 写一个 ucFirst函数，返回第一个字母为大写的字符</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#12-写一个函数truncate-str-maxlength-如果str的长度大于maxlength，会把str截断到maxlength长，并加上…"><span class="nav-number">2.0.0.0.12.</span> <span class="nav-text">12. 写一个函数truncate(str, maxlength), 如果str的长度大于maxlength，会把str截断到maxlength长，并加上…</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数学函数："><span class="nav-number">3.</span> <span class="nav-text">数学函数：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-写一个函数，获取从min到max之间的随机整数，包括min不包括max"><span class="nav-number">3.0.0.0.1.</span> <span class="nav-text">1. 写一个函数，获取从min到max之间的随机整数，包括min不包括max</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-写一个函数，获取从min都max之间的随机整数，包括min包括max"><span class="nav-number">3.0.0.0.2.</span> <span class="nav-text">2. 写一个函数，获取从min都max之间的随机整数，包括min包括max</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-写一个函数，获取一个随机数组，数组中元素为长度为len，最小值为min，最大值为max-包括-的随机整数"><span class="nav-number">3.0.0.0.3.</span> <span class="nav-text">3. 写一个函数，获取一个随机数组，数组中元素为长度为len，最小值为min，最大值为max(包括)的随机整数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-写一个函数，生成一个长度为-n-的随机字符串，字符串字符的取值范围包括0到9，a到-z，A到Z。"><span class="nav-number">3.0.0.0.4.</span> <span class="nav-text">4. 写一个函数，生成一个长度为 n 的随机字符串，字符串字符的取值范围包括0到9，a到 z，A到Z。</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">chenwei</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

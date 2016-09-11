@@ -238,328 +238,7 @@
             
               
                 
-                <a class="post-title-link" href="/2016/09/01/JS-Function/" itemprop="url">
-                  JS Function
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-01T21:49:34+08:00" content="2016-09-01">
-              2016-09-01
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="函数声明和函数表达式有什么区别？"><a href="#函数声明和函数表达式有什么区别？" class="headerlink" title="函数声明和函数表达式有什么区别？"></a>函数声明和函数表达式有什么区别？</h1><ul>
-<li><p>函数声明：<br> <code>function FunName(){}</code></p>
-</li>
-<li><p>函数表达式：<code>var  FunName = function (){}</code></p>
-</li>
-<li><p>区别：使用函数声明会使这个函数声明前置（在指定作用域中），可以在定义前或后被调用执行。<br>使用函数表达式只提升变量（函数表达式不会前置），等到定义这个函数并赋值给变量后才能被调用或执行。</p>
-</li>
-</ul>
-<hr>
-<h1 id="什么是变量的声明前置？什么是函数的声明前置-？"><a href="#什么是变量的声明前置？什么是函数的声明前置-？" class="headerlink" title="什么是变量的声明前置？什么是函数的声明前置 ？"></a>什么是变量的声明前置？什么是函数的声明前置 ？</h1><pre><code>var y = 1;            //  var y,y=1;  var x; func;
-console.log(x);       //undefined
-console.log(y);      // 1
-func();             //1
-func2();           //报错
-function func(){
-  console.log(1);
-}
-var x=2;
-var func2 = function (){
-  console.log(2);
-}
-</code></pre><ul>
-<li>变量声明前置：只提升变量声明（到指定作用域顶部），并不会提升赋值操作。</li>
-<li>函数声明前置：使用函数声明会提升到指定作用域顶部，使用表达式只提升该函数所赋值的变量。</li>
-</ul>
-<hr>
-<h1 id="arguments-是什么？"><a href="#arguments-是什么？" class="headerlink" title="arguments 是什么？"></a>arguments 是什么？</h1><ul>
-<li><p>参数(arguments)是传递给函数的数据。</p>
-<pre><code>function FunName(arguments){
-  statements;
-}
-</code></pre></li>
-</ul>
-<ul>
-<li><p>arguments是function的隐含属性，它将会将实参显示成一个类组对象。</p>
-<pre><code>function FunName(a,b){
-console.log(a,b)
-console.log(arguments);
-}
-FunName(&quot;a&quot;,&quot;b&quot;,&quot;c&quot;)；
-//
-</code></pre><p>  <img src="http://ocu0qruwo.bkt.clouddn.com/arguments.png" alt="img"></p>
-</li>
-<li><p>arguments.length:指的是实参的长度，不是形参的长度。</p>
-</li>
-</ul>
-<hr>
-<h1 id="函数的重载怎样实现-？"><a href="#函数的重载怎样实现-？" class="headerlink" title="函数的重载怎样实现 ？"></a>函数的重载怎样实现 ？</h1><ul>
-<li>JS函数定义时的参数个数和函数调用时的参数个数没有任何关系。所以JS没有重载的概念。</li>
-<li><p>使用arguments.length模拟函数重载：</p>
-<pre><code>  function habitus(){
-  var l = arguments.length;
-    if ( 1 &gt;= l){
-  var length = arguments[0];
-    Length(length)
-  } else{
-  var length = arguments[0];
-  var width = arguments[1];
-    LengthWidth(length,width)
-  }
- }
-function Length(length){
-    console.log(&quot;身高:&quot; + length + &quot;米&quot;);
-}
-    console.log(&quot;身高:&quot; + length + &quot;米&quot;);
-    console.log(&quot;体重:&quot; + width+ &quot;公斤&quot; );
-}
-</code></pre><p><img src="http://ocu0qruwo.bkt.clouddn.com/Function-overloading.png" alt="img"></p>
-</li>
-</ul>
-<hr>
-<h1 id="立即执行函数表达式是什么？有什么作用-？"><a href="#立即执行函数表达式是什么？有什么作用-？" class="headerlink" title="立即执行函数表达式是什么？有什么作用 ？"></a>立即执行函数表达式是什么？有什么作用 ？</h1><ul>
-<li><p>(Immediately-Invoked Function Expression)简称IIFE：</p>
-<ul>
-<li><code>!function (){}();</code></li>
-<li><code>(function(){});</code></li>
-</ul>
-</li>
-<li><p>防止变量产生全局污染。（当同时调用多个JS的情况时，很容易造成因为变量名一致或函数名一致而覆盖其他库的变量。）<br> <a href="https://segmentfault.com/a/1190000000327820" target="_blank" rel="external">举一个例子请参考</a></p>
-</li>
-</ul>
-<hr>
-<h1 id="什么是函数的作用域链-？"><a href="#什么是函数的作用域链-？" class="headerlink" title="什么是函数的作用域链 ？"></a>什么是函数的作用域链 ？</h1><ul>
-<li>函数作用域：作用域就是变量与函数的可访问范围，即作用域控制着变量与函数的可见性和生命周期。<ul>
-<li>全局变量：可以在脚本中的任何位置被引用。</li>
-<li>局部变量：只存在于声明它的函数内部，在那个函数的外部无法引用它。</li>
-</ul>
-</li>
-<li><p>看看下面的几种情况：</p>
-<pre><code>var a = 1;  //全局变量
-
-function FunName(){
-   var example = &quot;chestnut&quot; ;  //使用var声明,example为局部变量。
-   console.log(example);
-   result = &quot;你好&quot;;   //没有使用var声明，result为全局变量。
-   return result;
-
-}    
-   var result = &quot;Hi&quot;    //此声明已被覆盖。      
-     FunName();
-      //  &quot;你好&quot;    
-     console.log(example);   //局部变量只有该函数内部能引用。
-</code></pre></li>
-<li><p>作用域链：内部上下文所有变量对象（包括父变量对象）的列表，用来变量查询。在代码执行的过程中，所用到的变量会在当前作用域中进行寻找，如果找不到，就会往沿着作用域链向上一级进行寻找，一直到全局作用域为止，如果找到便会停止（而不理会上一级是否有同名的变量），如果找不到，就会报错。<br><strong><a href="http://www.cnblogs.com/lhb25/archive/2011/09/06/javascript-scope-chain.html" target="_blank" rel="external">参考JavaScript 开发进阶：理解 JavaScript 作用域和作用域链</a></strong></p>
-</li>
-</ul>
-<hr>
-<h1 id="代码部分"><a href="#代码部分" class="headerlink" title="代码部分"></a>代码部分</h1><h5 id="1-以下代码输出什么？"><a href="#1-以下代码输出什么？" class="headerlink" title="1.以下代码输出什么？"></a>1.以下代码输出什么？</h5><pre><code>function getInfo(name, age, sex){
-console.log(&apos;name:&apos;,name);
-console.log(&apos;age:&apos;, age);
-console.log(&apos;sex:&apos;, sex);
-console.log(arguments);
-arguments[0] = &apos;valley&apos;;
-console.log(&apos;name&apos;, name);
-}
-
-getInfo(&apos;hunger&apos;, 28, &apos;男&apos;);
-getInfo(&apos;hunger&apos;, 28);
-getInfo(&apos;男&apos;);
-</code></pre><p><img src="http://ocu0qruwo.bkt.clouddn.com/getInfo.png" alt="img"></p>
-<hr>
-<h5 id="2-写一个函数，返回参数的平方和？如"><a href="#2-写一个函数，返回参数的平方和？如" class="headerlink" title="2.写一个函数，返回参数的平方和？如:"></a>2.写一个函数，返回参数的平方和？如:</h5><pre><code>function sumOfSquares(){
-  for(var i = 0,count = 0; i &lt; arguments.length; i++){
-  count = count + arguments[i]*arguments[i];
-  }   console.log(count);
-}
-sumOfSquares(2,3,4);   // 29
-sumOfSquares(1,3);   // 10
-</code></pre><hr>
-<h5 id="3-如下代码的输出？为什么"><a href="#3-如下代码的输出？为什么" class="headerlink" title="3.如下代码的输出？为什么?"></a>3.如下代码的输出？为什么?</h5><pre><code> console.log(a);       //  等同于右边代码：      var a;
- var a = 1;                                console.log(a);
- console.log(b);                             a= 1;
- // undefined;                             console.log(b);
-//  b is not defined
-</code></pre><hr>
-<h5 id="4-如下代码的输出？为什么"><a href="#4-如下代码的输出？为什么" class="headerlink" title="4.如下代码的输出？为什么?"></a>4.如下代码的输出？为什么?</h5><pre><code> sayName(&apos;world&apos;);      //等同右边代码：   function sayName(name){
- sayAge(10);                                 console.log(&apos;hello&apos;,name);
- function sayName(name){                  }
-     console.log(&apos;hello &apos;, name);          var sayAge;
- }                                         sayName(&apos;world&apos;);
- var sayAge = function(age){               sayAge(10);
-     console.log(age);                  sayAge = function (age){
- };                                     console.log(age);
-//   &quot;hello world&quot;                       }
-//   sayAge is not a function
-</code></pre><hr>
-<h5 id="5-如下代码的输出？为什么"><a href="#5-如下代码的输出？为什么" class="headerlink" title="5.如下代码的输出？为什么?"></a>5.如下代码的输出？为什么?</h5><pre><code>function fn(){}     //等同右边代码：       function fn(){};
-var fn = 3;                             var fn ;
-console.log(fn);                       fn = 3;  //上面的fn被这个声明赋值覆盖了。
-                   //输出结果为3.              console.log(fn)
-</code></pre><hr>
-<h5 id="6-如下代码的输出？为什么"><a href="#6-如下代码的输出？为什么" class="headerlink" title="6.如下代码的输出？为什么?"></a>6.如下代码的输出？为什么?</h5><pre><code>function fn(fn2){     //等同于右边代码：     function fn(fn2){      
-console.log(fn2);                           function fn2(){
-var fn2 = 3;                              console.log(&apos;fnn2&apos;);
-console.log(fn2);                       }
-console.log(fn);                          console.log(fn2);
-function fn2(){                            var fn2 = 3;
-    console.log(&apos;fnnn2&apos;);                 console.log(fn2);
-}                                         console.log(fn);
-}                                        }
-fn(10);                                fn(10);
-</code></pre><hr>
-<h5 id="7-如下代码的输出？为什么"><a href="#7-如下代码的输出？为什么" class="headerlink" title="7.如下代码的输出？为什么?"></a>7.如下代码的输出？为什么?</h5><pre><code>var fn = 1;             //等同于右边代码：   var fn;
-function fn(fn){                         function fn(fn){
-console.log(fn);                          console.log(fn);
-}                                        }
-console.log(fn(fn));                          fn = 1;
-                                        console.log(fn(fn));
-
-  //fn is not a function.              fn = 1 ;并不是一个函数。
-</code></pre><h5 id="8-如下代码的输出？为什么"><a href="#8-如下代码的输出？为什么" class="headerlink" title="8.如下代码的输出？为什么?"></a>8.如下代码的输出？为什么?</h5><pre><code>//作用域                //等同于右边代码：   var i, j;
-console.log(j);        //undefined      console.log(j);
-console.log(i);       //undefined       console.log(i);
-for(var i=0; i&lt;10; i++){             for( i = 0; i &lt; 10 ; i++){
-    var j = 100;                            j = 100;
-}                                     }
-console.log(i);      //10              console.log(i);
-console.log(j);     //100              console.log(j);
-</code></pre><hr>
-<h5 id="9-如下代码的输出？为什么"><a href="#9-如下代码的输出？为什么" class="headerlink" title="9.如下代码的输出？为什么?"></a>9.如下代码的输出？为什么?</h5><pre><code>fn();                  
-var i = 10;                            
-var fn = 20;                             
-console.log(i);                         
-function fn(){                         
-    console.log(i);
-    var i = 99;
-    fn2();
-    console.log(i);
-    function fn2(){
-        i = 100;
-    }
-}
-</code></pre><p>将变量和函数提升后得出下面代码：</p>
-<pre><code>function fn(){
-  function fn2(){
-         i = 100;
-  }     
-  var i ;
-  console.log(i);  // undefined;
-  i = 99;          
-  fn2();             
-  console.log(i);  //    i ===100;
-}
-var  i ;
-var  fn;
-fn();
-i =10
-fn= 20
-console.log(i);  //   i === 10;
-</code></pre><hr>
-<h5 id="10-如下代码的输出？为什么"><a href="#10-如下代码的输出？为什么" class="headerlink" title="10.如下代码的输出？为什么 ?"></a>10.如下代码的输出？为什么 ?</h5><pre><code>var say = 0;
-(function say(n){
-    console.log(n);
-    if(n&lt;3) return;
-    say(n-1);
-}( 10 ));
-console.log(say);
-
-
-var say;
-(function say(n){
-   console.log(n);      //10
-  if (n&lt;3) {return;}    2
-    say(n-1);      // 9,8,7,6,5,4,3
- }(10));
- say = 0;
- console.log(say);   // 0
-</code></pre><hr>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/01/Array-String-MathFunction/" itemprop="url">
+                <a class="post-title-link" href="/2016/09/11/Array-String-MathFunction/" itemprop="url">
                   Array-String-MathFunction
                 </a>
               
@@ -573,8 +252,8 @@ var say;
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-01T21:49:34+08:00" content="2016-09-01">
-              2016-09-01
+            <time itemprop="dateCreated" datetime="2016-09-11T22:22:54+08:00" content="2016-09-11">
+              2016-09-11
             </time>
           </span>
 
@@ -915,6 +594,327 @@ function getRandStr(len) {
     return str;
 }
 </code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/09/01/JS-Function/" itemprop="url">
+                  JS Function
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-01T21:49:34+08:00" content="2016-09-01">
+              2016-09-01
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="函数声明和函数表达式有什么区别？"><a href="#函数声明和函数表达式有什么区别？" class="headerlink" title="函数声明和函数表达式有什么区别？"></a>函数声明和函数表达式有什么区别？</h1><ul>
+<li><p>函数声明：<br> <code>function FunName(){}</code></p>
+</li>
+<li><p>函数表达式：<code>var  FunName = function (){}</code></p>
+</li>
+<li><p>区别：使用函数声明会使这个函数声明前置（在指定作用域中），可以在定义前或后被调用执行。<br>使用函数表达式只提升变量（函数表达式不会前置），等到定义这个函数并赋值给变量后才能被调用或执行。</p>
+</li>
+</ul>
+<hr>
+<h1 id="什么是变量的声明前置？什么是函数的声明前置-？"><a href="#什么是变量的声明前置？什么是函数的声明前置-？" class="headerlink" title="什么是变量的声明前置？什么是函数的声明前置 ？"></a>什么是变量的声明前置？什么是函数的声明前置 ？</h1><pre><code>var y = 1;            //  var y,y=1;  var x; func;
+console.log(x);       //undefined
+console.log(y);      // 1
+func();             //1
+func2();           //报错
+function func(){
+  console.log(1);
+}
+var x=2;
+var func2 = function (){
+  console.log(2);
+}
+</code></pre><ul>
+<li>变量声明前置：只提升变量声明（到指定作用域顶部），并不会提升赋值操作。</li>
+<li>函数声明前置：使用函数声明会提升到指定作用域顶部，使用表达式只提升该函数所赋值的变量。</li>
+</ul>
+<hr>
+<h1 id="arguments-是什么？"><a href="#arguments-是什么？" class="headerlink" title="arguments 是什么？"></a>arguments 是什么？</h1><ul>
+<li><p>参数(arguments)是传递给函数的数据。</p>
+<pre><code>function FunName(arguments){
+  statements;
+}
+</code></pre></li>
+</ul>
+<ul>
+<li><p>arguments是function的隐含属性，它将会将实参显示成一个类组对象。</p>
+<pre><code>function FunName(a,b){
+console.log(a,b)
+console.log(arguments);
+}
+FunName(&quot;a&quot;,&quot;b&quot;,&quot;c&quot;)；
+//
+</code></pre><p>  <img src="http://ocu0qruwo.bkt.clouddn.com/arguments.png" alt="img"></p>
+</li>
+<li><p>arguments.length:指的是实参的长度，不是形参的长度。</p>
+</li>
+</ul>
+<hr>
+<h1 id="函数的重载怎样实现-？"><a href="#函数的重载怎样实现-？" class="headerlink" title="函数的重载怎样实现 ？"></a>函数的重载怎样实现 ？</h1><ul>
+<li>JS函数定义时的参数个数和函数调用时的参数个数没有任何关系。所以JS没有重载的概念。</li>
+<li><p>使用arguments.length模拟函数重载：</p>
+<pre><code>  function habitus(){
+  var l = arguments.length;
+    if ( 1 &gt;= l){
+  var length = arguments[0];
+    Length(length)
+  } else{
+  var length = arguments[0];
+  var width = arguments[1];
+    LengthWidth(length,width)
+  }
+ }
+function Length(length){
+    console.log(&quot;身高:&quot; + length + &quot;米&quot;);
+}
+    console.log(&quot;身高:&quot; + length + &quot;米&quot;);
+    console.log(&quot;体重:&quot; + width+ &quot;公斤&quot; );
+}
+</code></pre><p><img src="http://ocu0qruwo.bkt.clouddn.com/Function-overloading.png" alt="img"></p>
+</li>
+</ul>
+<hr>
+<h1 id="立即执行函数表达式是什么？有什么作用-？"><a href="#立即执行函数表达式是什么？有什么作用-？" class="headerlink" title="立即执行函数表达式是什么？有什么作用 ？"></a>立即执行函数表达式是什么？有什么作用 ？</h1><ul>
+<li><p>(Immediately-Invoked Function Expression)简称IIFE：</p>
+<ul>
+<li><code>!function (){}();</code></li>
+<li><code>(function(){});</code></li>
+</ul>
+</li>
+<li><p>防止变量产生全局污染。（当同时调用多个JS的情况时，很容易造成因为变量名一致或函数名一致而覆盖其他库的变量。）<br> <a href="https://segmentfault.com/a/1190000000327820" target="_blank" rel="external">举一个例子请参考</a></p>
+</li>
+</ul>
+<hr>
+<h1 id="什么是函数的作用域链-？"><a href="#什么是函数的作用域链-？" class="headerlink" title="什么是函数的作用域链 ？"></a>什么是函数的作用域链 ？</h1><ul>
+<li>函数作用域：作用域就是变量与函数的可访问范围，即作用域控制着变量与函数的可见性和生命周期。<ul>
+<li>全局变量：可以在脚本中的任何位置被引用。</li>
+<li>局部变量：只存在于声明它的函数内部，在那个函数的外部无法引用它。</li>
+</ul>
+</li>
+<li><p>看看下面的几种情况：</p>
+<pre><code>var a = 1;  //全局变量
+
+function FunName(){
+   var example = &quot;chestnut&quot; ;  //使用var声明,example为局部变量。
+   console.log(example);
+   result = &quot;你好&quot;;   //没有使用var声明，result为全局变量。
+   return result;
+
+}    
+   var result = &quot;Hi&quot;    //此声明已被覆盖。      
+     FunName();
+      //  &quot;你好&quot;    
+     console.log(example);   //局部变量只有该函数内部能引用。
+</code></pre></li>
+<li><p>作用域链：内部上下文所有变量对象（包括父变量对象）的列表，用来变量查询。在代码执行的过程中，所用到的变量会在当前作用域中进行寻找，如果找不到，就会往沿着作用域链向上一级进行寻找，一直到全局作用域为止，如果找到便会停止（而不理会上一级是否有同名的变量），如果找不到，就会报错。<br><strong><a href="http://www.cnblogs.com/lhb25/archive/2011/09/06/javascript-scope-chain.html" target="_blank" rel="external">参考JavaScript 开发进阶：理解 JavaScript 作用域和作用域链</a></strong></p>
+</li>
+</ul>
+<hr>
+<h1 id="代码部分"><a href="#代码部分" class="headerlink" title="代码部分"></a>代码部分</h1><h5 id="1-以下代码输出什么？"><a href="#1-以下代码输出什么？" class="headerlink" title="1.以下代码输出什么？"></a>1.以下代码输出什么？</h5><pre><code>function getInfo(name, age, sex){
+console.log(&apos;name:&apos;,name);
+console.log(&apos;age:&apos;, age);
+console.log(&apos;sex:&apos;, sex);
+console.log(arguments);
+arguments[0] = &apos;valley&apos;;
+console.log(&apos;name&apos;, name);
+}
+
+getInfo(&apos;hunger&apos;, 28, &apos;男&apos;);
+getInfo(&apos;hunger&apos;, 28);
+getInfo(&apos;男&apos;);
+</code></pre><p><img src="http://ocu0qruwo.bkt.clouddn.com/getInfo.png" alt="img"></p>
+<hr>
+<h5 id="2-写一个函数，返回参数的平方和？如"><a href="#2-写一个函数，返回参数的平方和？如" class="headerlink" title="2.写一个函数，返回参数的平方和？如:"></a>2.写一个函数，返回参数的平方和？如:</h5><pre><code>function sumOfSquares(){
+  for(var i = 0,count = 0; i &lt; arguments.length; i++){
+  count = count + arguments[i]*arguments[i];
+  }   console.log(count);
+}
+sumOfSquares(2,3,4);   // 29
+sumOfSquares(1,3);   // 10
+</code></pre><hr>
+<h5 id="3-如下代码的输出？为什么"><a href="#3-如下代码的输出？为什么" class="headerlink" title="3.如下代码的输出？为什么?"></a>3.如下代码的输出？为什么?</h5><pre><code> console.log(a);       //  等同于右边代码：      var a;
+ var a = 1;                                console.log(a);
+ console.log(b);                             a= 1;
+ // undefined;                             console.log(b);
+//  b is not defined
+</code></pre><hr>
+<h5 id="4-如下代码的输出？为什么"><a href="#4-如下代码的输出？为什么" class="headerlink" title="4.如下代码的输出？为什么?"></a>4.如下代码的输出？为什么?</h5><pre><code> sayName(&apos;world&apos;);      //等同右边代码：   function sayName(name){
+ sayAge(10);                                 console.log(&apos;hello&apos;,name);
+ function sayName(name){                  }
+     console.log(&apos;hello &apos;, name);          var sayAge;
+ }                                         sayName(&apos;world&apos;);
+ var sayAge = function(age){               sayAge(10);
+     console.log(age);                  sayAge = function (age){
+ };                                     console.log(age);
+//   &quot;hello world&quot;                       }
+//   sayAge is not a function
+</code></pre><hr>
+<h5 id="5-如下代码的输出？为什么"><a href="#5-如下代码的输出？为什么" class="headerlink" title="5.如下代码的输出？为什么?"></a>5.如下代码的输出？为什么?</h5><pre><code>function fn(){}     //等同右边代码：       function fn(){};
+var fn = 3;                             var fn ;
+console.log(fn);                       fn = 3;  //上面的fn被这个声明赋值覆盖了。
+                   //输出结果为3.              console.log(fn)
+</code></pre><hr>
+<h5 id="6-如下代码的输出？为什么"><a href="#6-如下代码的输出？为什么" class="headerlink" title="6.如下代码的输出？为什么?"></a>6.如下代码的输出？为什么?</h5><pre><code>function fn(fn2){     //等同于右边代码：     function fn(fn2){      
+console.log(fn2);                           function fn2(){
+var fn2 = 3;                              console.log(&apos;fnn2&apos;);
+console.log(fn2);                       }
+console.log(fn);                          console.log(fn2);
+function fn2(){                            var fn2 = 3;
+    console.log(&apos;fnnn2&apos;);                 console.log(fn2);
+}                                         console.log(fn);
+}                                        }
+fn(10);                                fn(10);
+</code></pre><hr>
+<h5 id="7-如下代码的输出？为什么"><a href="#7-如下代码的输出？为什么" class="headerlink" title="7.如下代码的输出？为什么?"></a>7.如下代码的输出？为什么?</h5><pre><code>var fn = 1;             //等同于右边代码：   var fn;
+function fn(fn){                         function fn(fn){
+console.log(fn);                          console.log(fn);
+}                                        }
+console.log(fn(fn));                          fn = 1;
+                                        console.log(fn(fn));
+
+  //fn is not a function.              fn = 1 ;并不是一个函数。
+</code></pre><h5 id="8-如下代码的输出？为什么"><a href="#8-如下代码的输出？为什么" class="headerlink" title="8.如下代码的输出？为什么?"></a>8.如下代码的输出？为什么?</h5><pre><code>//作用域                //等同于右边代码：   var i, j;
+console.log(j);        //undefined      console.log(j);
+console.log(i);       //undefined       console.log(i);
+for(var i=0; i&lt;10; i++){             for( i = 0; i &lt; 10 ; i++){
+    var j = 100;                            j = 100;
+}                                     }
+console.log(i);      //10              console.log(i);
+console.log(j);     //100              console.log(j);
+</code></pre><hr>
+<h5 id="9-如下代码的输出？为什么"><a href="#9-如下代码的输出？为什么" class="headerlink" title="9.如下代码的输出？为什么?"></a>9.如下代码的输出？为什么?</h5><pre><code>fn();                  
+var i = 10;                            
+var fn = 20;                             
+console.log(i);                         
+function fn(){                         
+    console.log(i);
+    var i = 99;
+    fn2();
+    console.log(i);
+    function fn2(){
+        i = 100;
+    }
+}
+</code></pre><p>将变量和函数提升后得出下面代码：</p>
+<pre><code>function fn(){
+  function fn2(){
+         i = 100;
+  }     
+  var i ;
+  console.log(i);  // undefined;
+  i = 99;          
+  fn2();             
+  console.log(i);  //    i ===100;
+}
+var  i ;
+var  fn;
+fn();
+i =10
+fn= 20
+console.log(i);  //   i === 10;
+</code></pre><hr>
+<h5 id="10-如下代码的输出？为什么"><a href="#10-如下代码的输出？为什么" class="headerlink" title="10.如下代码的输出？为什么 ?"></a>10.如下代码的输出？为什么 ?</h5><pre><code>var say = 0;
+(function say(n){
+    console.log(n);
+    if(n&lt;3) return;
+    say(n-1);
+}( 10 ));
+console.log(say);
+
+
+var say;
+(function say(n){
+   console.log(n);      //10
+  if (n&lt;3) {return;}    2
+    say(n-1);      // 9,8,7,6,5,4,3
+ }(10));
+ say = 0;
+ console.log(say);   // 0
+</code></pre><hr>
+
           
         
       
@@ -1310,7 +1310,7 @@ console.log(b);     //  is not defined;
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">1</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
