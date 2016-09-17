@@ -238,6 +238,251 @@
             
               
                 
+                <a class="post-title-link" href="/2016/09/13/DateObject-and-class/" itemprop="url">
+                  DateObject and class
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-13T19:54:45+08:00" content="2016-09-13">
+              2016-09-13
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="基础类型有哪些？复杂类型有哪些？有什么特征？"><a href="#基础类型有哪些？复杂类型有哪些？有什么特征？" class="headerlink" title="基础类型有哪些？复杂类型有哪些？有什么特征？"></a>基础类型有哪些？复杂类型有哪些？有什么特征？</h1><ul>
+<li>基本数据类型：Undefined、Null、Boolean、Number、String(简单的数据段)。<ul>
+<li>基本数据类型是按值访问的，因为可以操作保存在变量中的实际的值。</li>
+</ul>
+</li>
+<li>复杂类型(引用类型)：Object(可能由多个值构成的对象)。<ul>
+<li>复杂类型的值是保存在内存中的对象。</li>
+</ul>
+</li>
+<li><p>特征：</p>
+<ul>
+<li><p>只能给引用类型值动态的添加属性，以便将来使用。<br>var student = {};<br> student.name = “Jhon”;<br> console.log(student.name);  // Jhon<br>var name = “Jhon”<br> name.age = 18;<br> console.log(name.age) //  Undefined;</p>
+</li>
+<li><p>复制变量值：</p>
+<ul>
+<li>如果从一个变量向另一个变量复制基本类型的值，会在变量对象上创建一个新值，然后把该值复制到新变量分配的位置上，这两个变量可以参与任何操作而不会互相影响。<br>var count1 = 18;<br>var count2 = count1;<br> count1 = 20;<br> console.log(count1); // 20<br> console.log(count2);  // 18</li>
+<li>当从一个变量向另一个变量复制引用类型的值时，这个值得副本实际上是一个指针，指向同一个对象，因此改变一个变量就会影响到另一个变量。<br>var count1 = {first:18};<br>var count2 = count1;<br>count1.first = 30;<br>console.log(count1.first);  // 30<br>console.log(count2.first);  //  30  </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h1 id="如下代码的输出-为什么"><a href="#如下代码的输出-为什么" class="headerlink" title="如下代码的输出? 为什么?"></a>如下代码的输出? 为什么?</h1><pre><code>var obj1 = {a:1, b:2};
+var obj2 = {a:1, b:2};
+console.log(obj1 == obj2); //false,因为是两个不同的对象，跟它们的值相同没什么关系。
+console.log(obj1 = obj2); //将obj2赋值给obj1。这时obj1指向obj2内存中对象的值。
+console.log(obj1 == obj2); // 指向同一对象，所以当然是true。
+</code></pre><hr>
+<h1 id="代码部分："><a href="#代码部分：" class="headerlink" title="代码部分："></a>代码部分：</h1><h5 id="写一个函数getIntv，获取从当前时间到指定日期的间隔时间？"><a href="#写一个函数getIntv，获取从当前时间到指定日期的间隔时间？" class="headerlink" title="写一个函数getIntv，获取从当前时间到指定日期的间隔时间？"></a>写一个函数getIntv，获取从当前时间到指定日期的间隔时间？</h5><pre><code>var str = getIntv(&quot;2016-01-08&quot;);
+console.log(str);  // 距除夕还有 20 天 15 小时 20 分 10 秒
+
+function getIntv(time) {
+    var now = new Date(),
+        appoint = new Date(time),
+        result = appoint - now;
+    var days = Math.floor(result / (24 * 60 * 60 * 1000)),
+        hours = Math.floor((result - days * 24 * 60 * 60 * 1000) / (60 * 60 * 1000)),
+        minutes = Math.floor((result - hours * 60 * 60 * 1000) / (60 * 1000)),
+        seconds = Math.floor((result - minutes * 60 * 1000) / 1000);
+    var str = &quot;距离指定时间还有&quot; + days + &quot;天&quot; + hours + &quot;小时&quot; + minutes + &quot;分钟&quot; + seconds + &quot;秒&quot;;
+    return str;
+}
+</code></pre><hr>
+<h5 id="把数字日期改成中文日期"><a href="#把数字日期改成中文日期" class="headerlink" title="把数字日期改成中文日期"></a>把数字日期改成中文日期</h5><pre><code>var str = getChsDate(&apos;2015-01-08&apos;);
+console.log(str);  // 二零一五年一月八日
+
+var str = getChsDate(&apos;2015-01-08&apos;);
+console.log(str);  // 二零一五年一月八日
+
+function getChsDate(val) {
+    var valArr = val.split(&quot;-&quot;),
+        tempArr = [&quot;零&quot;, &quot;一&quot;, &quot;二&quot;, &quot;三&quot;, &quot;四&quot;, &quot;五&quot;, &quot;六&quot;, &quot;七&quot;, &quot;八&quot;, &quot;九&quot;],
+        year = [];
+    for (var i = 0; i &lt; valArr[0].length; i++) {
+        year = year + tempArr[valArr[0][i]];
+    }
+
+    function getDate(date) {
+        switch (true) {
+            case date &lt; 10:
+                return tempArr[date[1]];
+
+            case date === 10:
+                return &quot;十&quot;;
+
+            case date &gt; 10 &amp;&amp; date &lt; 20:
+                return &quot;十&quot; + tempArr[date[1]];
+
+            case date &gt; 20 &amp;&amp; date &lt; 30:
+                return &quot;二十&quot; + tempArr[date[1]];
+
+            default:
+                return;
+        }
+    }
+    return year + &quot;年&quot; + getDate(valArr[1]) + &quot;月&quot; + getDate(valArr[2]) + &quot;日&quot;;
+}
+</code></pre><hr>
+<h5 id="写一个函数获取n天前的日期"><a href="#写一个函数获取n天前的日期" class="headerlink" title="写一个函数获取n天前的日期"></a>写一个函数获取n天前的日期</h5><pre><code>var lastWeek =  getLastNDays(7); // ‘2016-01-08’
+var lastMonth = getLastNDays(30); //&apos;2015-12-15&apos;
+
+
+function getLastNDays(n){
+   var now = new Date(),
+       days = n * 24 * 60 * 60 * 1000,
+       date =  new Date(now - days);
+   var temp = [];
+       temp[0] = date.getUTCFullYear();
+       temp[1] = date.getUTCMonth();
+       temp[2] = date.getUTCDate();
+  return temp.join(&quot;-&quot;)
+}
+</code></pre><hr>
+<h5 id="完善如下代码，用于获取执行时间如："><a href="#完善如下代码，用于获取执行时间如：" class="headerlink" title="完善如下代码，用于获取执行时间如："></a>完善如下代码，用于获取执行时间如：</h5><pre><code>var Runtime = (function() {
+    var startTime,
+        endTime,
+        getTime;
+    var obj = {
+        start: function() {
+            startTime = Date.now();
+            return startTime; //code here ...， 当前时间
+        },
+        end: function() {
+            endTime = Date.now();
+            return endTime; //code here ...  结束时间
+        },
+        get: function() {
+            return endTime - startTime; //code here ...  获取执行时间
+        }
+    };
+    return obj;
+}());
+Runtime.start();
+alert(&quot;手速有多快！！！&quot;)
+Runtime.end();
+console.log(Runtime.get());
+</code></pre><hr>
+<h5 id="楼梯有200级，每次走1级或是2级，从底走到顶一共有多少种走法？用代码（递归）实现"><a href="#楼梯有200级，每次走1级或是2级，从底走到顶一共有多少种走法？用代码（递归）实现" class="headerlink" title="楼梯有200级，每次走1级或是2级，从底走到顶一共有多少种走法？用代码（递归）实现"></a>楼梯有200级，每次走1级或是2级，从底走到顶一共有多少种走法？用代码（递归）实现</h5><pre><code>function fn(mun) {
+switch (true) {
+case mun === 1:
+    return 1;
+case mun === 2:
+    return 2;
+default:
+    return fn(mun - 1) + fn(mun - 2);
+}
+}
+fn(200)
+</code></pre><p><em>浏览器已瘫痪</em></p>
+<hr>
+<h5 id="写一个json对象深拷贝的方法，json对象可以多层嵌套，值可以是字符串、数字、布尔、json对象中的任意项"><a href="#写一个json对象深拷贝的方法，json对象可以多层嵌套，值可以是字符串、数字、布尔、json对象中的任意项" class="headerlink" title="写一个json对象深拷贝的方法，json对象可以多层嵌套，值可以是字符串、数字、布尔、json对象中的任意项"></a>写一个json对象深拷贝的方法，json对象可以多层嵌套，值可以是字符串、数字、布尔、json对象中的任意项</h5><pre><code>function jsonCopy(json) {
+    var newJson = {};
+    for (var key in json) {
+        if (json[key] === &quot;object&quot;) {
+            newJson[key] = jsonCopy(json[key]);
+        } else {
+            newJson[key] = json[key];
+        }
+    }
+    return newJson;
+}
+
+var json = {
+    &quot;name&quot;: &quot;json&quot;,
+    &quot;age&quot;: 18,
+    &quot;address&quot;: {
+        &quot;area&quot;: &quot;China&quot;,
+        &quot;city&quot;: &quot;FJ&quot;,
+    }
+};
+console.log(jsonCopy(json));
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/09/11/Array-String-MathFunction/" itemprop="url">
                   Array-String-MathFunction
                 </a>
@@ -1300,7 +1545,7 @@ console.log(b);     //  is not defined;
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-count">5</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
