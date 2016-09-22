@@ -1,0 +1,761 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="1. 什么是闭包？有什么作用？
+闭包是指有权访问另一个函数作用域中的变量的函数。
+这些函数可以“记忆”它被创建时候的环境。
+function adder(x){
+  return function(y){
+    return x + y ;
+  }
+}
+var a = adder(5);
+var b = adder(6);
+
+console.log(a(5));  // 10;
+console.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Timer-and-Closure">
+<meta property="og:url" content="http://yoursite.com/2016/09/23/Timer-and-Closure/index.html">
+<meta property="og:site_name" content="小墨墨教我学前端">
+<meta property="og:description" content="1. 什么是闭包？有什么作用？
+闭包是指有权访问另一个函数作用域中的变量的函数。
+这些函数可以“记忆”它被创建时候的环境。
+function adder(x){
+  return function(y){
+    return x + y ;
+  }
+}
+var a = adder(5);
+var b = adder(6);
+
+console.log(a(5));  // 10;
+console.">
+<meta property="og:updated_time" content="2016-09-22T16:39:42.304Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Timer-and-Closure">
+<meta name="twitter:description" content="1. 什么是闭包？有什么作用？
+闭包是指有权访问另一个函数作用域中的变量的函数。
+这些函数可以“记忆”它被创建时候的环境。
+function adder(x){
+  return function(y){
+    return x + y ;
+  }
+}
+var a = adder(5);
+var b = adder(6);
+
+console.log(a(5));  // 10;
+console.">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/09/23/Timer-and-Closure/"/>
+
+  <title> Timer-and-Closure | 小墨墨教我学前端 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">小墨墨教我学前端</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">哈哈哈</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Timer-and-Closure
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-23T00:30:53+08:00" content="2016-09-23">
+              2016-09-23
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="1-什么是闭包？有什么作用？"><a href="#1-什么是闭包？有什么作用？" class="headerlink" title="1. 什么是闭包？有什么作用？"></a>1. 什么是闭包？有什么作用？</h1><ul>
+<li>闭包是指有权访问另一个函数作用域中的变量的函数。</li>
+<li><p>这些函数可以“记忆”它被创建时候的环境。</p>
+<pre><code>function adder(x){
+  return function(y){
+    return x + y ;
+  }
+}
+var a = adder(5);
+var b = adder(6);
+
+console.log(a(5));  // 10;
+console.log(b(5));  // 11;
+</code></pre><p>－ 声明了a,b;它们共享了函数adder定义，却保存了不同环境，这时的a,b是两个闭包。</p>
+</li>
+</ul>
+<hr>
+<h1 id="2-setTimeout-0-有什么作用"><a href="#2-setTimeout-0-有什么作用" class="headerlink" title="2.setTimeout 0 有什么作用?"></a>2.setTimeout 0 有什么作用?</h1><ul>
+<li>setTimeout(“code”,millisec):执行代码必须用字符串形式，millise设置在多少毫秒之后执行这段代码。</li>
+<li>setTimeout(fn,millisec):fn为函数名，millise设置在多少毫秒之后执行这个函数。</li>
+<li>如果省略第二个参数，该参数默认为0.</li>
+<li>setTimeout():返回一个数字编号，该编码作为参数用来取消这次延迟调用。</li>
+<li><p>例子，下面代码效果一致。</p>
+<pre><code>setTimeout(&quot;console.log(&apos;延迟了1000毫秒&apos;)&quot;,1000);
+setTimeout(fn,1000);
+function fn(){
+  console.log(&quot;延迟了1000毫秒&quot;)；
+}
+</code></pre></li>
+<li>setTimeout(function,0):将此函数放在JS代码末端<em>立即执行</em>。</li>
+<li><p>例子：</p>
+<pre><code>setTimeout(&apos;console.log(1)&apos;,1000); //右边为执行顺序:  2
+console.log(2);                    //               3
+console.log(3);                    //               4
+setTimeout(&apos;console.log(4)&apos;,0);    //               1
+</code></pre></li>
+</ul>
+<hr>
+<h1 id="代码题："><a href="#代码题：" class="headerlink" title="代码题："></a>代码题：</h1><h5 id="1-下面的代码输出多少？修改代码让fnArri-输出-i。使用两种以上的方法"><a href="#1-下面的代码输出多少？修改代码让fnArri-输出-i。使用两种以上的方法" class="headerlink" title="1. 下面的代码输出多少？修改代码让fnArri 输出 i。使用两种以上的方法?"></a>1. 下面的代码输出多少？修改代码让fnArr<a href="">i</a> 输出 i。使用两种以上的方法?</h5><pre><code>var fnArr = [];
+for (var i = 0; i &lt; 10; i ++) {
+    fnArr[i] =  function(){
+        return i;
+    };
+}
+console.log( fnArr[3]() );  //  10; 执行函数之前 i＝ 10;
+</code></pre><hr>
+<pre><code>  1.   var fnArr = [];
+     for (var i = 0; i &lt; 10; i++) {
+         (function(n) {
+             fnArr[i] = function() {
+                 return n;
+             }
+         })(i);
+
+     }
+
+
+2.  var fnArr = [];
+    for (var i = 0; i &lt; 10; i++) {
+      fnArr[i] = (function(n) {
+        return function() {
+            return n;
+        }
+      })(i);
+    }
+
+     console.log(fnArr[3]());  // 3 ;
+</code></pre><hr>
+<h5 id="2-使用闭包封装一个汽车对象，可以通过如下方式获取汽车状态。"><a href="#2-使用闭包封装一个汽车对象，可以通过如下方式获取汽车状态。" class="headerlink" title="2.使用闭包封装一个汽车对象，可以通过如下方式获取汽车状态。"></a>2.使用闭包封装一个汽车对象，可以通过如下方式获取汽车状态。</h5><pre><code>var Car = (function() {
+var speed = 0;
+
+function setSpeed(sum) {
+    speed = sum;
+}
+
+function getSpeed() {
+    console.log(speed);
+}
+
+function accelerate() {
+    speed = speed + 10;
+}
+
+function decelerate() {
+    speed = speed - 10;
+}
+
+function getStatus() {
+    if (speed &gt; 0) {
+        console.log(&quot;running&quot;);
+    } else {
+        console.log(&quot;stop&quot;)
+    }
+}
+return {
+    setSpeed: setSpeed,
+    getSpeed: getSpeed,
+    accelerate: accelerate,
+    decelerate: decelerate,
+    getStatus: getStatus
+}
+})();
+   var Car = //todo;
+   Car.setSpeed(30);
+   Car.getSpeed(); //30
+   Car.accelerate();
+   Car.getSpeed(); //40;
+   Car.decelerate();
+   Car.decelerate();
+   Car.getSpeed(); //20
+   Car.getStatus(); // &apos;running&apos;;
+   Car.decelerate();
+   Car.decelerate();
+   Car.getStatus();  //&apos;stop&apos;;
+   //Car.speed;  //error
+</code></pre><hr>
+<h5 id="3-写一个函数使用setTimeout模拟setInterval的功能。"><a href="#3-写一个函数使用setTimeout模拟setInterval的功能。" class="headerlink" title="3.写一个函数使用setTimeout模拟setInterval的功能。"></a>3.写一个函数使用setTimeout模拟setInterval的功能。</h5><pre><code>var i = 0,a,b;
+  a = setTimeout(function(){
+        console.log(i++);
+  b = setTimeout(arguments.callee,1000);
+},1000)
+</code></pre><hr>
+<h5 id="4-写一个函数，计算setTimeout平均-备注：新加-最小时间粒度。"><a href="#4-写一个函数，计算setTimeout平均-备注：新加-最小时间粒度。" class="headerlink" title="4.写一个函数，计算setTimeout平均[备注：新加]最小时间粒度。"></a>4.写一个函数，计算setTimeout平均[备注：新加]最小时间粒度。</h5><pre><code>function getMini(){
+  var i = 0;
+  var start = Date.now();
+  var clearSet = setTimeout(function(){
+    i++;
+    if( i === 1000){
+      clearTimeout(clearSet);
+      var end = Date.now();
+      console.log((end - start)/i)
+    }else {
+      setTimeout(arguments.callee,0);
+    }
+  },0)
+}
+getMini();  //    大概～4.553
+</code></pre><h5 id="5-下面这段代码输出结果是-为什么"><a href="#5-下面这段代码输出结果是-为什么" class="headerlink" title="5.下面这段代码输出结果是? 为什么?"></a>5.下面这段代码输出结果是? 为什么?</h5><pre><code>var a = 1;              //等同右边代码      var a = 1;
+setTimeout(function(){                    var a;
+    a = 2;                                console.log(a);
+    console.log(a);                           a = 3;
+}, 0);                                    console.log(a);
+var a ;                                   setTimeout(function(){
+console.log(a);                               a = 2;
+a = 3;                                      console.log(a);
+console.log(a);                           },0);
+</code></pre><hr>
+<h5 id="6-下面这段代码输出结果是-为什么"><a href="#6-下面这段代码输出结果是-为什么" class="headerlink" title="6.下面这段代码输出结果是? 为什么?"></a>6.下面这段代码输出结果是? 为什么?</h5><pre><code>var flag = true;
+setTimeout(function(){
+    flag = false;
+},0)
+while(flag){}
+console.log(flag);
+
+等同下边代码：
+var flag = true;
+while(flag){}
+console.log(flag);
+setTimeout(function(){
+  flag = false;
+},0)
+在while语句中死循环，无法执行后面的代码，所以没有结果。而且浏览器卡死了，老师能少出这类题目吗？浏览器已经卡死好几次了。
+每次做这类题目的时候明明知道会卡死，可是为了明确结果，还是毅然决然的敲击回车。
+</code></pre><hr>
+<h5 id="7-下面这段代码输出？如何输出delayer-0-delayer-1…（使用闭包来实现）。"><a href="#7-下面这段代码输出？如何输出delayer-0-delayer-1…（使用闭包来实现）。" class="headerlink" title="7.下面这段代码输出？如何输出delayer: 0, delayer:1…（使用闭包来实现）。"></a>7.下面这段代码输出？如何输出delayer: 0, delayer:1…（使用闭包来实现）。</h5><pre><code>for(var i=0;i&lt;5;i++){
+    setTimeout(function(){
+         console.log(&apos;delayer:&apos; + i );
+    }, 0);
+    console.log(i);
+}
+</code></pre><p>结果如下：<br>         for(var i=0;i&lt;5;i++){</p>
+<pre><code>    console.log(i);
+    (function (n){
+          setTimeout(function(){
+         console.log(&apos;delayer:&apos; + n );
+    }, 0);})(i);
+}
+</code></pre>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/13/DateObject-and-class/" rel="next" title="DateObject and class">
+                <i class="fa fa-chevron-left"></i> DateObject and class
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="chenwei" />
+          <p class="site-author-name" itemprop="name">chenwei</p>
+          <p class="site-description motion-element" itemprop="description">呵呵呵</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-什么是闭包？有什么作用？"><span class="nav-number">1.</span> <span class="nav-text">1. 什么是闭包？有什么作用？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-setTimeout-0-有什么作用"><span class="nav-number">2.</span> <span class="nav-text">2.setTimeout 0 有什么作用?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码题："><span class="nav-number">3.</span> <span class="nav-text">代码题：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-下面的代码输出多少？修改代码让fnArri-输出-i。使用两种以上的方法"><span class="nav-number">3.0.0.0.1.</span> <span class="nav-text">1. 下面的代码输出多少？修改代码让fnArri 输出 i。使用两种以上的方法?</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-使用闭包封装一个汽车对象，可以通过如下方式获取汽车状态。"><span class="nav-number">3.0.0.0.2.</span> <span class="nav-text">2.使用闭包封装一个汽车对象，可以通过如下方式获取汽车状态。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-写一个函数使用setTimeout模拟setInterval的功能。"><span class="nav-number">3.0.0.0.3.</span> <span class="nav-text">3.写一个函数使用setTimeout模拟setInterval的功能。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-写一个函数，计算setTimeout平均-备注：新加-最小时间粒度。"><span class="nav-number">3.0.0.0.4.</span> <span class="nav-text">4.写一个函数，计算setTimeout平均[备注：新加]最小时间粒度。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-下面这段代码输出结果是-为什么"><span class="nav-number">3.0.0.0.5.</span> <span class="nav-text">5.下面这段代码输出结果是? 为什么?</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-下面这段代码输出结果是-为什么"><span class="nav-number">3.0.0.0.6.</span> <span class="nav-text">6.下面这段代码输出结果是? 为什么?</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-下面这段代码输出？如何输出delayer-0-delayer-1…（使用闭包来实现）。"><span class="nav-number">3.0.0.0.7.</span> <span class="nav-text">7.下面这段代码输出？如何输出delayer: 0, delayer:1…（使用闭包来实现）。</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">chenwei</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

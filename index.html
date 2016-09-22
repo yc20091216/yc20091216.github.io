@@ -238,6 +238,276 @@
             
               
                 
+                <a class="post-title-link" href="/2016/09/23/Timer-and-Closure/" itemprop="url">
+                  Timer-and-Closure
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-23T00:30:53+08:00" content="2016-09-23">
+              2016-09-23
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="1-什么是闭包？有什么作用？"><a href="#1-什么是闭包？有什么作用？" class="headerlink" title="1. 什么是闭包？有什么作用？"></a>1. 什么是闭包？有什么作用？</h1><ul>
+<li>闭包是指有权访问另一个函数作用域中的变量的函数。</li>
+<li><p>这些函数可以“记忆”它被创建时候的环境。</p>
+<pre><code>function adder(x){
+  return function(y){
+    return x + y ;
+  }
+}
+var a = adder(5);
+var b = adder(6);
+
+console.log(a(5));  // 10;
+console.log(b(5));  // 11;
+</code></pre><p>－ 声明了a,b;它们共享了函数adder定义，却保存了不同环境，这时的a,b是两个闭包。</p>
+</li>
+</ul>
+<hr>
+<h1 id="2-setTimeout-0-有什么作用"><a href="#2-setTimeout-0-有什么作用" class="headerlink" title="2.setTimeout 0 有什么作用?"></a>2.setTimeout 0 有什么作用?</h1><ul>
+<li>setTimeout(“code”,millisec):执行代码必须用字符串形式，millise设置在多少毫秒之后执行这段代码。</li>
+<li>setTimeout(fn,millisec):fn为函数名，millise设置在多少毫秒之后执行这个函数。</li>
+<li>如果省略第二个参数，该参数默认为0.</li>
+<li>setTimeout():返回一个数字编号，该编码作为参数用来取消这次延迟调用。</li>
+<li><p>例子，下面代码效果一致。</p>
+<pre><code>setTimeout(&quot;console.log(&apos;延迟了1000毫秒&apos;)&quot;,1000);
+setTimeout(fn,1000);
+function fn(){
+  console.log(&quot;延迟了1000毫秒&quot;)；
+}
+</code></pre></li>
+<li>setTimeout(function,0):将此函数放在JS代码末端<em>立即执行</em>。</li>
+<li><p>例子：</p>
+<pre><code>setTimeout(&apos;console.log(1)&apos;,1000); //右边为执行顺序:  2
+console.log(2);                    //               3
+console.log(3);                    //               4
+setTimeout(&apos;console.log(4)&apos;,0);    //               1
+</code></pre></li>
+</ul>
+<hr>
+<h1 id="代码题："><a href="#代码题：" class="headerlink" title="代码题："></a>代码题：</h1><h5 id="1-下面的代码输出多少？修改代码让fnArri-输出-i。使用两种以上的方法"><a href="#1-下面的代码输出多少？修改代码让fnArri-输出-i。使用两种以上的方法" class="headerlink" title="1. 下面的代码输出多少？修改代码让fnArri 输出 i。使用两种以上的方法?"></a>1. 下面的代码输出多少？修改代码让fnArr<a href="">i</a> 输出 i。使用两种以上的方法?</h5><pre><code>var fnArr = [];
+for (var i = 0; i &lt; 10; i ++) {
+    fnArr[i] =  function(){
+        return i;
+    };
+}
+console.log( fnArr[3]() );  //  10; 执行函数之前 i＝ 10;
+</code></pre><hr>
+<pre><code>  1.   var fnArr = [];
+     for (var i = 0; i &lt; 10; i++) {
+         (function(n) {
+             fnArr[i] = function() {
+                 return n;
+             }
+         })(i);
+
+     }
+
+
+2.  var fnArr = [];
+    for (var i = 0; i &lt; 10; i++) {
+      fnArr[i] = (function(n) {
+        return function() {
+            return n;
+        }
+      })(i);
+    }
+
+     console.log(fnArr[3]());  // 3 ;
+</code></pre><hr>
+<h5 id="2-使用闭包封装一个汽车对象，可以通过如下方式获取汽车状态。"><a href="#2-使用闭包封装一个汽车对象，可以通过如下方式获取汽车状态。" class="headerlink" title="2.使用闭包封装一个汽车对象，可以通过如下方式获取汽车状态。"></a>2.使用闭包封装一个汽车对象，可以通过如下方式获取汽车状态。</h5><pre><code>var Car = (function() {
+var speed = 0;
+
+function setSpeed(sum) {
+    speed = sum;
+}
+
+function getSpeed() {
+    console.log(speed);
+}
+
+function accelerate() {
+    speed = speed + 10;
+}
+
+function decelerate() {
+    speed = speed - 10;
+}
+
+function getStatus() {
+    if (speed &gt; 0) {
+        console.log(&quot;running&quot;);
+    } else {
+        console.log(&quot;stop&quot;)
+    }
+}
+return {
+    setSpeed: setSpeed,
+    getSpeed: getSpeed,
+    accelerate: accelerate,
+    decelerate: decelerate,
+    getStatus: getStatus
+}
+})();
+   var Car = //todo;
+   Car.setSpeed(30);
+   Car.getSpeed(); //30
+   Car.accelerate();
+   Car.getSpeed(); //40;
+   Car.decelerate();
+   Car.decelerate();
+   Car.getSpeed(); //20
+   Car.getStatus(); // &apos;running&apos;;
+   Car.decelerate();
+   Car.decelerate();
+   Car.getStatus();  //&apos;stop&apos;;
+   //Car.speed;  //error
+</code></pre><hr>
+<h5 id="3-写一个函数使用setTimeout模拟setInterval的功能。"><a href="#3-写一个函数使用setTimeout模拟setInterval的功能。" class="headerlink" title="3.写一个函数使用setTimeout模拟setInterval的功能。"></a>3.写一个函数使用setTimeout模拟setInterval的功能。</h5><pre><code>var i = 0,a,b;
+  a = setTimeout(function(){
+        console.log(i++);
+  b = setTimeout(arguments.callee,1000);
+},1000)
+</code></pre><hr>
+<h5 id="4-写一个函数，计算setTimeout平均-备注：新加-最小时间粒度。"><a href="#4-写一个函数，计算setTimeout平均-备注：新加-最小时间粒度。" class="headerlink" title="4.写一个函数，计算setTimeout平均[备注：新加]最小时间粒度。"></a>4.写一个函数，计算setTimeout平均[备注：新加]最小时间粒度。</h5><pre><code>function getMini(){
+  var i = 0;
+  var start = Date.now();
+  var clearSet = setTimeout(function(){
+    i++;
+    if( i === 1000){
+      clearTimeout(clearSet);
+      var end = Date.now();
+      console.log((end - start)/i)
+    }else {
+      setTimeout(arguments.callee,0);
+    }
+  },0)
+}
+getMini();  //    大概～4.553
+</code></pre><h5 id="5-下面这段代码输出结果是-为什么"><a href="#5-下面这段代码输出结果是-为什么" class="headerlink" title="5.下面这段代码输出结果是? 为什么?"></a>5.下面这段代码输出结果是? 为什么?</h5><pre><code>var a = 1;              //等同右边代码      var a = 1;
+setTimeout(function(){                    var a;
+    a = 2;                                console.log(a);
+    console.log(a);                           a = 3;
+}, 0);                                    console.log(a);
+var a ;                                   setTimeout(function(){
+console.log(a);                               a = 2;
+a = 3;                                      console.log(a);
+console.log(a);                           },0);
+</code></pre><hr>
+<h5 id="6-下面这段代码输出结果是-为什么"><a href="#6-下面这段代码输出结果是-为什么" class="headerlink" title="6.下面这段代码输出结果是? 为什么?"></a>6.下面这段代码输出结果是? 为什么?</h5><pre><code>var flag = true;
+setTimeout(function(){
+    flag = false;
+},0)
+while(flag){}
+console.log(flag);
+
+等同下边代码：
+var flag = true;
+while(flag){}
+console.log(flag);
+setTimeout(function(){
+  flag = false;
+},0)
+在while语句中死循环，无法执行后面的代码，所以没有结果。而且浏览器卡死了，老师能少出这类题目吗？浏览器已经卡死好几次了。
+每次做这类题目的时候明明知道会卡死，可是为了明确结果，还是毅然决然的敲击回车。
+</code></pre><hr>
+<h5 id="7-下面这段代码输出？如何输出delayer-0-delayer-1…（使用闭包来实现）。"><a href="#7-下面这段代码输出？如何输出delayer-0-delayer-1…（使用闭包来实现）。" class="headerlink" title="7.下面这段代码输出？如何输出delayer: 0, delayer:1…（使用闭包来实现）。"></a>7.下面这段代码输出？如何输出delayer: 0, delayer:1…（使用闭包来实现）。</h5><pre><code>for(var i=0;i&lt;5;i++){
+    setTimeout(function(){
+         console.log(&apos;delayer:&apos; + i );
+    }, 0);
+    console.log(i);
+}
+</code></pre><p>结果如下：<br>         for(var i=0;i&lt;5;i++){</p>
+<pre><code>    console.log(i);
+    (function (n){
+          setTimeout(function(){
+         console.log(&apos;delayer:&apos; + n );
+    }, 0);})(i);
+}
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/09/13/DateObject-and-class/" itemprop="url">
                   DateObject and class
                 </a>
@@ -1545,7 +1815,7 @@ console.log(b);     //  is not defined;
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-count">6</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
