@@ -238,6 +238,203 @@
             
               
                 
+                <a class="post-title-link" href="/2016/10/08/Regular-Expression/" itemprop="url">
+                  Regular-Expression
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-08T22:18:27+08:00" content="2016-10-08">
+              2016-10-08
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="1-d，-w-s-a-zA-Z0-9-b-x-3-分别是什么"><a href="#1-d，-w-s-a-zA-Z0-9-b-x-3-分别是什么" class="headerlink" title="1. \d，\w,\s,[a-zA-Z0-9],\b,.,*,+,?,x{3},^$分别是什么?"></a>1. \d，\w,\s,[a-zA-Z0-9],\b,.,*,+,?,x{3},^$分别是什么?</h1><ul>
+<li>\d:匹配 0-9之间的数字。</li>
+<li>\w:匹配所有字母，数字和下划线。</li>
+<li>\s:匹配所有空白，包括空格，换行、tab缩进等。</li>
+<li>[a-zA-Z0-9]:匹配字母和数字。</li>
+<li>\b(元字符):边界 boundary，\b并不匹配任何字符，它只匹配一个位置，代表着单词的开头或结尾，也就是单词的分界处。</li>
+<li>.(元字符):匹配除了换行符以外的任意字符。</li>
+<li><em>(限定符):匹配</em>前面的字符连续重复任意次。</li>
+<li>+(限定符):匹配+前面的字符连续重复一次或更多次。</li>
+<li>？(限定符):匹配?前面的字符出现1次或者0次。</li>
+<li>x{3}:匹配至少3个连续的xxx。</li>
+<li>^(元字符):匹配字符串的开始。</li>
+<li>$(元字符):匹配字符串的结束。</li>
+</ul>
+<hr>
+<h1 id="2-贪婪模式和非贪婪模式指什么"><a href="#2-贪婪模式和非贪婪模式指什么" class="headerlink" title="2. 贪婪模式和非贪婪模式指什么?"></a>2. 贪婪模式和非贪婪模式指什么?</h1><ul>
+<li><p>贪婪模式：当正则表达式中包含能接受重复的限定符时，通常的行为是（在使整个表达式能得到匹配的前提下）匹配尽可能多的字符。</p>
+</li>
+<li><p>懒惰模式：（在使整个表达式能得到匹配的前提下）匹配尽可能少的字符。</p>
+</li>
+</ul>
+<hr>
+<h1 id="3-写一个函数trim-str-，去除字符串两边的空白字符。"><a href="#3-写一个函数trim-str-，去除字符串两边的空白字符。" class="headerlink" title="3. 写一个函数trim(str)，去除字符串两边的空白字符。"></a>3. 写一个函数trim(str)，去除字符串两边的空白字符。</h1><pre><code> function trim(str){
+   return str.replace(/^\s+|\s+$/g,&quot;&quot;);
+}
+var str = &quot;   abc  &quot;;
+trim(str); //&quot;abc&quot;
+</code></pre><hr>
+<h1 id="4-使用实现-addClass-el-cls-、hasClass-el-cls-、removeClass-el-cls-，使用正则。"><a href="#4-使用实现-addClass-el-cls-、hasClass-el-cls-、removeClass-el-cls-，使用正则。" class="headerlink" title="4. 使用实现 addClass(el, cls)、hasClass(el, cls)、removeClass(el,cls)，使用正则。"></a>4. 使用实现 addClass(el, cls)、hasClass(el, cls)、removeClass(el,cls)，使用正则。</h1><pre><code>function addClass(el, cls) {
+  el.className += &quot; &quot; + cls;
+}
+function hasClass(el, cls) {
+  var reg = new RegExp(&quot;(\\s|^)&quot; + cls + &quot;(\\s|$)&quot;, &quot;g&quot;);
+  return reg.test(el.className);
+}
+function removeClass(el, cls) {
+  var reg = new RegExp(&quot;(\\s|^)&quot; + cls + &quot;(\\s|$)&quot;, &quot;g&quot;);
+  return el.className.replace(reg, &quot;&quot;);  
+}
+</code></pre><hr>
+<h1 id="5-写一个函数isEmail-str-，判断用户输入的是不是邮箱？"><a href="#5-写一个函数isEmail-str-，判断用户输入的是不是邮箱？" class="headerlink" title="5.写一个函数isEmail(str)，判断用户输入的是不是邮箱？"></a>5.写一个函数isEmail(str)，判断用户输入的是不是邮箱？</h1><pre><code>function isEmail(str) {
+    var reg = /^[\w-]+@{1}[a-z0-9]+\.{1}[a-z]+$/i;
+    if (reg.test(str)) {
+        return &quot;系统繁忙请重试&quot;;
+    } else {
+        return &quot;请输入正确邮箱地址&quot;;
+    }
+}
+</code></pre><hr>
+<h1 id="6-写一个函数isPhoneNum-str-，判断用户输入的是不是手机号？"><a href="#6-写一个函数isPhoneNum-str-，判断用户输入的是不是手机号？" class="headerlink" title="6. 写一个函数isPhoneNum(str)，判断用户输入的是不是手机号？"></a>6. 写一个函数isPhoneNum(str)，判断用户输入的是不是手机号？</h1><pre><code>function isPhoneNum(str) {
+    var reg = /^1[3|4|5|7|8]\d{9}$/;
+    if (reg.test(str)) {
+        return &quot;您的电话已欠费！&quot;;
+    } else {
+        return &quot;请输入正确手机号码！&quot;;
+    }
+}
+</code></pre><hr>
+<h1 id="7-写一个函数isValidUsername-str-，判断用户输入的是不是合法的用户名（长度6-20个字符，只能包括字母、数字、下划线）。"><a href="#7-写一个函数isValidUsername-str-，判断用户输入的是不是合法的用户名（长度6-20个字符，只能包括字母、数字、下划线）。" class="headerlink" title="7. 写一个函数isValidUsername(str)，判断用户输入的是不是合法的用户名（长度6-20个字符，只能包括字母、数字、下划线）。"></a>7. 写一个函数isValidUsername(str)，判断用户输入的是不是合法的用户名（长度6-20个字符，只能包括字母、数字、下划线）。</h1><pre><code>function isValidUsername(str){
+  var reg = /^\w{6,20}$/;
+  if(reg.test(str)){
+    return &quot;合法用户名！&quot;
+  }else {
+    return &quot;非法用户名，请重新输入用户名&quot;
+  }
+}
+</code></pre><hr>
+<h1 id="8-写一个函数isValidPassword-str-判断用户输入的是不是合法密码（长度6-20个字符，包括大写字母、小写字母、数字、下划线至少两种）。"><a href="#8-写一个函数isValidPassword-str-判断用户输入的是不是合法密码（长度6-20个字符，包括大写字母、小写字母、数字、下划线至少两种）。" class="headerlink" title="8.写一个函数isValidPassword(str), 判断用户输入的是不是合法密码（长度6-20个字符，包括大写字母、小写字母、数字、下划线至少两种）。"></a>8.写一个函数isValidPassword(str), 判断用户输入的是不是合法密码（长度6-20个字符，包括大写字母、小写字母、数字、下划线至少两种）。</h1><pre><code>function isValidPassword(str) {
+    var reg = /\w{6,20}/;
+    if (reg.test(str)) {
+        if (/(^\d+$)|(^[a-z]+$)|(^[A-Z]+$)|(^[-]+$)/.test(str)) {
+            return &quot;请输入合法密码（长度6-20个字符，包括大写字母、小写字母、数字、下划线至少两种）&quot;;
+        } else {
+            return &quot;密码设置完成&quot;;
+        }
+    } else {
+        return &quot;请输入长度6-20个字符，包括大写字母、小写字母、数字、下划线至少两种&quot;
+    }
+}
+</code></pre><hr>
+<h1 id="9-写一个正则表达式，得到如下字符串里所有的颜色（-121212）"><a href="#9-写一个正则表达式，得到如下字符串里所有的颜色（-121212）" class="headerlink" title="9. 写一个正则表达式，得到如下字符串里所有的颜色（#121212）"></a>9. 写一个正则表达式，得到如下字符串里所有的颜色（#121212）</h1><pre><code>var re = /*正则...*/
+var re = /#[a-z0-9A-Z]{6}/g;
+
+var subj = &quot;color: #121212; background-color: #AA00ef; width: 12px; bad-colors: f#fddee #fd2 &quot;
+
+alert( subj.match(re) )  // #121212,#AA00ef
+</code></pre><hr>
+<h1 id="10-下面代码输出什么-为什么-改写代码，让其输出hunger-world"><a href="#10-下面代码输出什么-为什么-改写代码，让其输出hunger-world" class="headerlink" title="10. 下面代码输出什么? 为什么? 改写代码，让其输出hunger, world."></a>10. 下面代码输出什么? 为什么? 改写代码，让其输出hunger, world.</h1><pre><code>var str = &apos;hello  &quot;hunger&quot; , hello &quot;world&quot;&apos;;
+var pat =  /&quot;.*&quot;/g;
+str.match(pat);  //[&quot;&quot;hunger&quot; , hello &quot;world&quot;&quot;]，贪婪模式匹配尽可能多，以最边上的&quot;匹配。
+
+var pat = /&quot;.*?&quot;/g;  
+  str.match(pat);  // [&quot;&quot;hunger&quot;&quot;, &quot;&quot;world&quot;&quot;],懒惰模式匹配尽可能少。
+</code></pre><hr>
+<h1 id="11-补全如下正则表达式，输出字符串中的注释内容-可尝试使用贪婪模式和非贪婪模式两种方法"><a href="#11-补全如下正则表达式，输出字符串中的注释内容-可尝试使用贪婪模式和非贪婪模式两种方法" class="headerlink" title="11. 补全如下正则表达式，输出字符串中的注释内容. (可尝试使用贪婪模式和非贪婪模式两种方法)"></a>11. 补全如下正则表达式，输出字符串中的注释内容. (可尝试使用贪婪模式和非贪婪模式两种方法)</h1><pre><code>str = &apos;.. &lt;!-- My -- comment \n test --&gt; ..  &lt;!----&gt; .. &apos;
+re = /.. your regexp ../
+var reg = /&lt;[^&gt;]*&gt;/g;        // 贪婪模式
+var reg = /&lt;[\W\w]*?&gt;/g;     //懒惰模式
+str.match(re) // &apos;&lt;!-- My -- comment \n test --&gt;&apos;, &apos;&lt;!----&gt;&apos;
+</code></pre><hr>
+<h1 id="12-补全如下正则表达式。"><a href="#12-补全如下正则表达式。" class="headerlink" title="12.补全如下正则表达式。"></a>12.补全如下正则表达式。</h1><pre><code>var re = /* your regexp */
+var re = /&lt;[^&gt;]+&gt;/g;     //贪婪模式。（好像这个例子用贪婪和非贪婪差别不大）  
+var str = &apos;&lt;&gt; &lt;a href=&quot;/&quot;&gt; &lt;input type=&quot;radio&quot; checked&gt; &lt;b&gt;&apos;
+str.match(re) // &apos;&lt;a href=&quot;/&quot;&gt;&apos;, &apos;&lt;input type=&quot;radio&quot; checked&gt;&apos;, &apos;&lt;b&gt;&apos;
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/09/23/Timer-and-Closure/" itemprop="url">
                   Timer-and-Closure
                 </a>
@@ -1815,7 +2012,7 @@ console.log(b);     //  is not defined;
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-count">7</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
