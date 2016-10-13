@@ -350,17 +350,17 @@ function removeClass(el, cls) {
 }
 </code></pre><hr>
 <h1 id="8-写一个函数isValidPassword-str-判断用户输入的是不是合法密码（长度6-20个字符，包括大写字母、小写字母、数字、下划线至少两种）。"><a href="#8-写一个函数isValidPassword-str-判断用户输入的是不是合法密码（长度6-20个字符，包括大写字母、小写字母、数字、下划线至少两种）。" class="headerlink" title="8.写一个函数isValidPassword(str), 判断用户输入的是不是合法密码（长度6-20个字符，包括大写字母、小写字母、数字、下划线至少两种）。"></a>8.写一个函数isValidPassword(str), 判断用户输入的是不是合法密码（长度6-20个字符，包括大写字母、小写字母、数字、下划线至少两种）。</h1><pre><code>function isValidPassword(str) {
-    var reg = /\w{6,20}/;
+    var reg = /.{6,20}/;
     if (reg.test(str)) {
-        if (/(^\d+$)|(^[a-z]+$)|(^[A-Z]+$)|(^[-]+$)/.test(str)) {
-            return &quot;请输入合法密码（长度6-20个字符，包括大写字母、小写字母、数字、下划线至少两种）&quot;;
+        if (/(?:\d.*_)|(?:_.*\d)|(?:[A-Za-z].*_)|(?:_.*[A-Za-z])|(?:[A-Za-z].*\d)|(?:\d.*[A-Za-z])/.test(str)) {
+            return &quot;设置完成&quot;;
         } else {
-            return &quot;密码设置完成&quot;;
+            return &quot;请输入合法密码（长度6-20个字符，包括大写字母、小写字母、数字、下划线至少两种）&quot;;
         }
-    } else {
-        return &quot;请输入长度6-20个字符，包括大写字母、小写字母、数字、下划线至少两种&quot;
-    }
-}
+        } else {
+            return &quot;请输入长度6-20个字符，包括大写字母、小写字母、数字、下划线至少两种&quot;
+        }
+        }
 </code></pre><hr>
 <h1 id="9-写一个正则表达式，得到如下字符串里所有的颜色（-121212）"><a href="#9-写一个正则表达式，得到如下字符串里所有的颜色（-121212）" class="headerlink" title="9. 写一个正则表达式，得到如下字符串里所有的颜色（#121212）"></a>9. 写一个正则表达式，得到如下字符串里所有的颜色（#121212）</h1><pre><code>var re = /*正则...*/
 var re = /#[a-z0-9A-Z]{6}/g;
