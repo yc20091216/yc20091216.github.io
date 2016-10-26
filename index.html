@@ -238,6 +238,174 @@
             
               
                 
+                <a class="post-title-link" href="/2016/10/16/DOM-Event/" itemprop="url">
+                  DOM Event
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-16T01:06:41+08:00" content="2016-10-16">
+              2016-10-16
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="1-dom对象的innerText和innerHTML有什么区别？"><a href="#1-dom对象的innerText和innerHTML有什么区别？" class="headerlink" title="1. dom对象的innerText和innerHTML有什么区别？"></a>1. dom对象的innerText和innerHTML有什么区别？</h1><ul>
+<li><p>innerText: 返回内部不含HTML标签的文本内容。</p>
+</li>
+<li><p>innerHTML:返回内部含HTML标签以及文本内容。</p>
+</li>
+<li><h5 id="举例子："><a href="#举例子：" class="headerlink" title="举例子："></a>举例子：</h5><pre><code>&lt;div id=&quot;div1&quot;&gt;
+  &lt;p&gt;段落1&lt;/p&gt;
+    呵呵呵
+  &lt;div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+       var g = function(id) {
+      return document.getElementById(id);
+      }
+  console.log(g(&quot;div1&quot;).innerText);
+  console.log(g(&quot;div1&quot;).innerHTML);
+&lt;/script&gt;
+</code></pre></li>
+</ul>
+<p><img src="http://ocu0qruwo.bkt.clouddn.com/inner.png" alt="img"></p>
+<hr>
+<h1 id="2-elem-children和elem-childNodes的区别？"><a href="#2-elem-children和elem-childNodes的区别？" class="headerlink" title="2. elem.children和elem.childNodes的区别？"></a>2. elem.children和elem.childNodes的区别？</h1><ul>
+<li><h5 id="举一个例子："><a href="#举一个例子：" class="headerlink" title="举一个例子："></a>举一个例子：</h5><img src="http://ocu0qruwo.bkt.clouddn.com/children.png" alt="img"></li>
+<li>elem.children:返回直接子元素（有标签的元素节点）。</li>
+<li>elem.childNodes:返回直接子节点（包括文本节点）。</li>
+</ul>
+<hr>
+<h1 id="3-查询元素有几种常见的方法？"><a href="#3-查询元素有几种常见的方法？" class="headerlink" title="3. 查询元素有几种常见的方法？"></a>3. 查询元素有几种常见的方法？</h1><ul>
+<li>document.getElementById():返回id元素节点，没有则返回null。</li>
+<li>document.getElementsByClassName():返回class符合条件的元素的数组。（IE5，6,7,8不支持）</li>
+<li>document.getElementsByTagName():返回标签名符合条件的元素的数组。</li>
+<li>document.getElementsByName():返回name符合条件的元素的数组（IE会将同名id属性的元素也返回）。</li>
+<li>document.querySelector():返回第一个符合CSS选择器的元素节点。（无法选中伪元素）</li>
+<li>document.querySelectorAll():返回所有符合css选择器的元素的数组。</li>
+</ul>
+<hr>
+<h1 id="4-如何创建一个元素？如何给元素设置属性？"><a href="#4-如何创建一个元素？如何给元素设置属性？" class="headerlink" title="4. 如何创建一个元素？如何给元素设置属性？"></a>4. 如何创建一个元素？如何给元素设置属性？</h1><ul>
+<li>创建一个元素：<ul>
+<li>document.createElement(“TagName”): 创建HTML元素节点。</li>
+<li>ducument.createTextNodes(“text”):创建文本节点。</li>
+</ul>
+</li>
+<li>设置元素属性：setAttribute(“name”,”value”):接受两个参数，第一个为属性名，第二个为属性值，不规范的属性名也能够被设置。</li>
+</ul>
+<hr>
+<h1 id="5-元素的添加、删除？"><a href="#5-元素的添加、删除？" class="headerlink" title="5. 元素的添加、删除？"></a>5. 元素的添加、删除？</h1><ul>
+<li>appendChild(document.getElementById()):在指定id元素末尾(块元素)添加。</li>
+<li>insertBefore(document.createTextNode),document.getElementById().firstChild):在指定id元素的第一个子元素之前插入创建的文本。</li>
+<li>replaceChild(newElement,oldElement):接受两个参数，要插入的元素和要被替换的元素。</li>
+<li>removeChild():删除元素。</li>
+</ul>
+<hr>
+<h1 id="6-DOM0-事件和DOM2级在事件监听使用方式上有什么区别？"><a href="#6-DOM0-事件和DOM2级在事件监听使用方式上有什么区别？" class="headerlink" title="6. DOM0 事件和DOM2级在事件监听使用方式上有什么区别？"></a>6. DOM0 事件和DOM2级在事件监听使用方式上有什么区别？</h1><ul>
+<li>DOM0事件监听器无法处理多个事件（事件将被覆盖），DOM2级事件监听器可以处理多个事件（事件列表）。</li>
+<li>DOM2级(addEventListener()):可以选择在捕获阶段触发事件或者在冒泡阶段触发事件。DOM0无法选择。</li>
+<li>DOM0不存在兼容性问题，DOM2在IE8之前不支持。（IE使用attachEvent(‘click’,func)）</li>
+<li><h5 id="举一个例子：-1"><a href="#举一个例子：-1" class="headerlink" title="举一个例子："></a>举一个例子：</h5><img src="http://ocu0qruwo.bkt.clouddn.com/Event.png" alt="img"><br><img src="http://ocu0qruwo.bkt.clouddn.com/Event1.png" alt="img"></li>
+</ul>
+<hr>
+<h1 id="7-attachEvent与addEventListener的区别？"><a href="#7-attachEvent与addEventListener的区别？" class="headerlink" title="7. attachEvent与addEventListener的区别？"></a>7. attachEvent与addEventListener的区别？</h1><ul>
+<li>attachEvent:是IE的事件监听器。接受两个参数，第一个参数是事件类型，格式为”on+type”(onclick),第二个参数是事件处理程序函数。事件处理程序只能发生在冒泡阶段。</li>
+<li>addEventListener:是W3C标准的事件监听器。接受三个参数，第一个参数时事件类型，格式为”type”(click),第二个参数是事件处理程序函数，第三个参数是布尔值,默认为false(冒泡事件),true为捕获阶段事件。</li>
+</ul>
+<hr>
+<h1 id="8-解释IE事件冒泡和DOM2事件传播机制？"><a href="#8-解释IE事件冒泡和DOM2事件传播机制？" class="headerlink" title="8. 解释IE事件冒泡和DOM2事件传播机制？"></a>8. 解释IE事件冒泡和DOM2事件传播机制？</h1><ul>
+<li>IE事件冒泡：事件开始时由最具体的元素接收，然后逐级向上传播到较为不具体的元素。</li>
+<li>DOM2事件传播机制：DOM2事件传播机制属于DOM事件流(DOM2级事件规定事件流包括三个阶段，事件捕获阶段，处于目标阶段，事件冒泡阶段，首先发生的是事件捕获，为截取事件提供机会，然后是实际目标接收事件，最后是冒泡阶段)，并且第三个参数可以设置事件触发时是捕获阶段或者冒泡阶段。</li>
+</ul>
+<hr>
+<h1 id="9-如何阻止事件冒泡？-如何阻止默认事件？"><a href="#9-如何阻止事件冒泡？-如何阻止默认事件？" class="headerlink" title="9. 如何阻止事件冒泡？ 如何阻止默认事件？"></a>9. 如何阻止事件冒泡？ 如何阻止默认事件？</h1><ul>
+<li>阻止事件冒泡：event.stopPropagation();(IE:<br>event.cancelBubble=true);</li>
+<li>阻止默认事件：event.preventDefault();(IE:event.returnValue = false);</li>
+<li><h5 id="举一个例子：-2"><a href="#举一个例子：-2" class="headerlink" title="举一个例子："></a>举一个例子：</h5><img src="http://ocu0qruwo.bkt.clouddn.com/propagation.png" alt="img"></li>
+</ul>
+<hr>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/10/08/Regular-Expression/" itemprop="url">
                   Regular-Expression
                 </a>
@@ -2012,7 +2180,7 @@ console.log(b);     //  is not defined;
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-count">8</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
