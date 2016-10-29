@@ -238,6 +238,144 @@
             
               
                 
+                <a class="post-title-link" href="/2016/10/28/熟悉后端语言/" itemprop="url">
+                  熟悉后端语言
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-28T23:11:49+08:00" content="2016-10-28">
+              2016-10-28
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="动手部分："><a href="#动手部分：" class="headerlink" title="动手部分："></a>动手部分：</h1><h5 id="1-动手安装XAMPP。"><a href="#1-动手安装XAMPP。" class="headerlink" title="1. 动手安装XAMPP。"></a>1. 动手安装XAMPP。</h5><p><img src="http://ocu0qruwo.bkt.clouddn.com/XAMPP.png" alt="img"><br><img src="http://ocu0qruwo.bkt.clouddn.com/php.png" alt="img"><br><img src="http://ocu0qruwo.bkt.clouddn.com/hello.png" alt="img"></p>
+<h1 id="问答部分："><a href="#问答部分：" class="headerlink" title="问答部分："></a>问答部分：</h1><h5 id="1-简单描述下web-服务器、PHP、数据库、浏览器是如何实现动态网站的"><a href="#1-简单描述下web-服务器、PHP、数据库、浏览器是如何实现动态网站的" class="headerlink" title="1. 简单描述下web 服务器、PHP、数据库、浏览器是如何实现动态网站的?"></a>1. 简单描述下web 服务器、PHP、数据库、浏览器是如何实现动态网站的?</h5><ul>
+<li>用户端访问服务器端的html文件：<ul>
+<li>根据用户输入的域名解析为对应IP地址。</li>
+<li>尝试连接对应IP地址，发送打包请求html文件。</li>
+<li>web服务器端接受请求后找到对应html文件，并返回文件内容。</li>
+<li>浏览器接受服务器返回html文件内容并解析渲染呈现在浏览器窗口。</li>
+</ul>
+</li>
+<li>用户访问服务器端的php文件：<ul>
+<li>根据用户输入的域名解析为对应ip地址。</li>
+<li>尝试连接对应IP地址，发送打包请求php文件。</li>
+<li>web服务器端委托php应用服务器处理接受打包请求的php文件。</li>
+<li>php应用服务器解析后翻译成html文件返回给web服务器，由web服务器将翻译后的html文件返回给客户端浏览器。</li>
+<li>浏览器接受服务器返回html文件内容并解析渲染呈现在浏览器窗口。</li>
+</ul>
+</li>
+<li>用户端访问服务器端的数据库：<ul>
+<li>根据用户输入的域名解析为对应ip地址。</li>
+<li>尝试连接对应IP地址，发送打包请求php文件。</li>
+<li>由web服务器委托php应用服务器处理接受的打包请求。</li>
+<li>在php中通过对数据库的连接代码来连接对应数据库，并且由php程序执行标准SQL查询语句获取数据返回给php应用服务器，php应用服务器解析后翻译成html文件返回给web服务器，由web服务器将翻译后的html文件返回给客户端浏览器。</li>
+<li>浏览器接受服务器返回html文件内容并解析渲染呈现在浏览器窗口。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h5 id="2-常见的-WEB-服务器有哪些？"><a href="#2-常见的-WEB-服务器有哪些？" class="headerlink" title="2. 常见的 WEB 服务器有哪些？"></a>2. 常见的 WEB 服务器有哪些？</h5><ul>
+<li>Unix和Linux平台下的常用Web服务器有Apache,Nginx,Lighttpd,Tomcat..</li>
+<li>windows常用IIS..</li>
+</ul>
+<hr>
+<h5 id="3-打开浏览器，在地址栏输入-http-jirengu-com-页面展现了饥人谷官网的信息，整个过程发生了什么？（饥人谷官网后台语言-php-web服务器-nginx，数据库-mysql）"><a href="#3-打开浏览器，在地址栏输入-http-jirengu-com-页面展现了饥人谷官网的信息，整个过程发生了什么？（饥人谷官网后台语言-php-web服务器-nginx，数据库-mysql）" class="headerlink" title="3. 打开浏览器，在地址栏输入 http://jirengu.com 页面展现了饥人谷官网的信息，整个过程发生了什么？（饥人谷官网后台语言 php,web服务器 nginx，数据库 mysql）"></a>3. 打开浏览器，在地址栏输入 <a href="http://jirengu.com" target="_blank" rel="external">http://jirengu.com</a> 页面展现了饥人谷官网的信息，整个过程发生了什么？（饥人谷官网后台语言 php,web服务器 nginx，数据库 mysql）</h5><ol>
+<li>输入http:jirengu.com。</li>
+<li>解析域名查询IP地址：121.40.201.213<ul>
+<li>查找浏览器缓存。</li>
+<li>查找系统缓存。</li>
+<li>查找路由器缓存。</li>
+<li>查找ISP服务商提供的DNS缓存。</li>
+<li>查找顶级域名根服务器开始递归查询。</li>
+</ul>
+</li>
+<li>浏览器打包发送请求报文，通过TCP/IP协议建立连接，服务器接收请求，如果是html请求则找到对应html文件返回给浏览器，如果是php请求则委托php应用服务器处理并生成html返回给web服务器再返回给浏览器，如果有数据库请求则委托php应用服务器通过php连接对应数据库，通过php执行查询语句获取数据，再由php应用服务器生成html返回给web服务器再返回给浏览器。</li>
+<li>浏览器根据接收且下载html文档，解析后呈现给用户。</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/10/16/DOM-Event/" itemprop="url">
                   DOM Event
                 </a>
@@ -2180,7 +2318,7 @@ console.log(b);     //  is not defined;
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-count">9</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
