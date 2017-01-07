@@ -238,6 +238,150 @@
             
               
                 
+                <a class="post-title-link" href="/2016/12/05/jQuery常见方法-ajax/" itemprop="url">
+                  jQuery常见方法&ajax
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-05T22:36:57+08:00" content="2016-12-05">
+              2016-12-05
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="问答部分："><a href="#问答部分：" class="headerlink" title="问答部分："></a>问答部分：</h1><h5 id="1-Jquery-中，-document-ready-是什么意思？和window-onload-的区别？-还有其他什么写法或者替代方法？"><a href="#1-Jquery-中，-document-ready-是什么意思？和window-onload-的区别？-还有其他什么写法或者替代方法？" class="headerlink" title="1. Jquery 中， $(document).ready()是什么意思？和window.onload 的区别？ 还有其他什么写法或者替代方法？"></a>1. Jquery 中， $(document).ready()是什么意思？和window.onload 的区别？ 还有其他什么写法或者替代方法？</h5><ul>
+<li>$(document).ready():当DOM加载完成后执行该函数；</li>
+<li>window.onload:当页面加载完成后执行该函数(页面内容、图片、外部资源)。</li>
+<li>两者区别：<ul>
+<li>执行的事件不同：$(document).ready()当DOM构建完成后就执行,而window.onload需要等页面内所有资源加载完成后。</li>
+<li>编写个数不同：window.onload只能执行一次，执行最后一个window.onload。$(document).ready()可以执行多个。</li>
+<li>window.onload没有其他写法,$(document).ready(handler)还有$(handler)、$().ready(handler)。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h5 id="2-node-html-和-node-text-的区别"><a href="#2-node-html-和-node-text-的区别" class="headerlink" title="2.$node.html()和$node.text()的区别?"></a>2.$node.html()和$node.text()的区别?</h5><ul>
+<li>$node.html():返回该节点下的html内容(包括html标签)。</li>
+<li>$node.text()：返回该节点下的文本内容(不包括html标签)。</li>
+</ul>
+<hr>
+<h5 id="3-extend-的作用和用法"><a href="#3-extend-的作用和用法" class="headerlink" title="3. $.extend 的作用和用法?"></a>3. $.extend 的作用和用法?</h5><ul>
+<li>语法:    jQuery.extend([deep,] target [, object1 ] [, objectN ] );</li>
+<li>作用：<ul>
+<li>当我们提供两个或多个对象给$.extend()，对象的所有属性都添加到目标对象（target参数）。</li>
+<li>如果只有一个参数提供给$.extend()，这意味着目标参数被省略。在这种情况下，jQuery对象本身被默认为目标对象。这样，我们可以在jQuery的命名空间下添加新的功能。这对于插件开发者希望向 jQuery 中添加新函数时是很有用的。</li>
+<li>如果想保留原对象:var object = $.extend({}, object1, object2);</li>
+</ul>
+</li>
+<li>默认情况下，通过$.extend()合并操作不是递归的：<ul>
+<li><img src="http://ocu0qruwo.bkt.clouddn.com/extend1.png" alt="img"></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h5 id="4-JQuery-的链式调用是什么？"><a href="#4-JQuery-的链式调用是什么？" class="headerlink" title="4. JQuery 的链式调用是什么？"></a>4. JQuery 的链式调用是什么？</h5><ul>
+<li>jQuery链式调用：在对象上一次性调动多个方法<ul>
+<li><code>$(this).addClass(&quot;active&quot;).siblings().removeClass(&quot;active&quot;)</code></li>
+</ul>
+</li>
+<li>因为大部分对象方法的最后是return this，所以有了链式调用，简易代码。</li>
+</ul>
+<hr>
+<h5 id="5-JQuery-ajax-中缓存怎样控制"><a href="#5-JQuery-ajax-中缓存怎样控制" class="headerlink" title="5. JQuery ajax 中缓存怎样控制?"></a>5. JQuery ajax 中缓存怎样控制?</h5><ul>
+<li>缓存：当向服务器请求数据时，get类型会产生缓存，而post不会产生缓存；如果下次请求相同的话，浏览器会从本地缓存读取数据而不会从服务器获取数据，这将可能导致数据不同步造成差异。</li>
+<li>利用cache参数来控制缓存。<ul>
+<li>cache (默认: true, dataType为”script”和”jsonp”时默认为false)，如果设置为 false ，浏览器将不缓存此页面。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h5 id="6-jquery-中-data-函数的作用？"><a href="#6-jquery-中-data-函数的作用？" class="headerlink" title="6. jquery 中 data 函数的作用？"></a>6. jquery 中 data 函数的作用？</h5><ul>
+<li>作用：data方法允许在DOM元素上绑定任意类型的数据，避免了循环引用的内存泄漏风险。</li>
+<li>语法：$(“selector”).data(key, value)。</li>
+</ul>
+<hr>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/10/28/熟悉后端语言/" itemprop="url">
                   熟悉后端语言
                 </a>
@@ -2318,7 +2462,7 @@ console.log(b);     //  is not defined;
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-count">10</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -2365,7 +2509,7 @@ console.log(b);     //  is not defined;
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
