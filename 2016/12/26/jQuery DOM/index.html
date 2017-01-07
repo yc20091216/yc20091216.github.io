@@ -1,0 +1,633 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="代码部分1. 说说库和框架的区别？
+库：将代码集合成一个产品，提供给开发者调用。面向对象的代码组织而成的叫类库，面向过程组织而成的叫函数库。
+框架：为解决一个(一类)问题而开发的产品，框架用户一般只需要使用框架提供的类或函数，即可实现全部功能。
+区别：库提供更灵活的选择，需要自己组织。框架更具有针对性，提供一整套完整的代码。
+
+
+2. jquery 能做什么？
+封装部分JavaScript代码，A">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jQuery-DOM">
+<meta property="og:url" content="http://yoursite.com/2016/12/26/jQuery DOM/index.html">
+<meta property="og:site_name" content="小墨墨教我学前端">
+<meta property="og:description" content="代码部分1. 说说库和框架的区别？
+库：将代码集合成一个产品，提供给开发者调用。面向对象的代码组织而成的叫类库，面向过程组织而成的叫函数库。
+框架：为解决一个(一类)问题而开发的产品，框架用户一般只需要使用框架提供的类或函数，即可实现全部功能。
+区别：库提供更灵活的选择，需要自己组织。框架更具有针对性，提供一整套完整的代码。
+
+
+2. jquery 能做什么？
+封装部分JavaScript代码，A">
+<meta property="og:updated_time" content="2017-01-07T15:22:25.099Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="jQuery-DOM">
+<meta name="twitter:description" content="代码部分1. 说说库和框架的区别？
+库：将代码集合成一个产品，提供给开发者调用。面向对象的代码组织而成的叫类库，面向过程组织而成的叫函数库。
+框架：为解决一个(一类)问题而开发的产品，框架用户一般只需要使用框架提供的类或函数，即可实现全部功能。
+区别：库提供更灵活的选择，需要自己组织。框架更具有针对性，提供一整套完整的代码。
+
+
+2. jquery 能做什么？
+封装部分JavaScript代码，A">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/12/26/jQuery DOM/"/>
+
+  <title> jQuery-DOM | 小墨墨教我学前端 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">小墨墨教我学前端</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">哈哈哈</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                jQuery-DOM
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-26T22:36:57+08:00" content="2016-12-26">
+              2016-12-26
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="代码部分"><a href="#代码部分" class="headerlink" title="代码部分"></a>代码部分</h1><h5 id="1-说说库和框架的区别？"><a href="#1-说说库和框架的区别？" class="headerlink" title="1. 说说库和框架的区别？"></a>1. 说说库和框架的区别？</h5><ul>
+<li>库：将代码集合成一个产品，提供给开发者调用。面向对象的代码组织而成的叫类库，面向过程组织而成的叫函数库。</li>
+<li>框架：为解决一个(一类)问题而开发的产品，框架用户一般只需要使用框架提供的类或函数，即可实现全部功能。</li>
+<li>区别：库提供更灵活的选择，需要自己组织。框架更具有针对性，提供一整套完整的代码。</li>
+</ul>
+<hr>
+<h5 id="2-jquery-能做什么？"><a href="#2-jquery-能做什么？" class="headerlink" title="2. jquery 能做什么？"></a>2. jquery 能做什么？</h5><ul>
+<li>封装部分JavaScript代码，API友好。<ol>
+<li>$(“css选择器”) 代替了 document.getElementsByTagName(“”)、document.getElementById(“”)…</li>
+<li>$(“css选择器”).css(“color”,”red”) 代替了 document.getElementById(“”).style.color = “red”。</li>
+<li>$(“css选择器”).text(“”) 一个api同时具有读跟写的功能。($(“div”).text(“你好吗”);)。</li>
+<li>$(“css选择器”).on(“click”,function (){}),监听事件。</li>
+</ol>
+</li>
+</ul>
+<hr>
+<h5 id="3-jquery-对象和-DOM-原生对象有什么区别？如何转化？"><a href="#3-jquery-对象和-DOM-原生对象有什么区别？如何转化？" class="headerlink" title="3. jquery 对象和 DOM 原生对象有什么区别？如何转化？"></a>3. jquery 对象和 DOM 原生对象有什么区别？如何转化？</h5><ul>
+<li>DOM原生对象：w3c标准用于操作文档的API.</li>
+<li>jQuery对象：包装DOM对象产生的对象。</li>
+<li>区别：DOM原生对象使用DOM原生对象的方法，jQuery对象使用jQuery对象的方法。</li>
+<li>转化：<ul>
+<li>DOM原生对象转化为jQuery对象：$div = $(document.getElementsByTagName(‘div’));</li>
+<li>jQuery对象转化为DOM原生对象：div = $div[index];</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h5 id="4-jquery中如何绑定事件？bind、unbind、delegate、live、on、off都有什么作用？推荐使用哪种？使用on绑定事件使用事件代理的写法？"><a href="#4-jquery中如何绑定事件？bind、unbind、delegate、live、on、off都有什么作用？推荐使用哪种？使用on绑定事件使用事件代理的写法？" class="headerlink" title="4. jquery中如何绑定事件？bind、unbind、delegate、live、on、off都有什么作用？推荐使用哪种？使用on绑定事件使用事件代理的写法？"></a>4. jquery中如何绑定事件？bind、unbind、delegate、live、on、off都有什么作用？推荐使用哪种？使用on绑定事件使用事件代理的写法？</h5><ul>
+<li>bin():为一个元素绑定一个或多个事件。<ul>
+<li>$(‘button’).bind(‘click’,function(){console.log(this)});</li>
+<li>$(‘p’).bind(‘mouseenter mouseleave’,function(){$(this).toggleClass(‘change’)})；</li>
+</ul>
+</li>
+<li>unbind():$(‘p’)解除该元素绑定的事件。</li>
+<li><p>delegate():为指定的元素（属于被选元素的子元素）添加一个或多个事件处理程序，并规定当这些事件发生时运行的函数；适用于当前或未来的元素（比如由脚本创建的新元素）。</p>
+<ul>
+<li><figure class="highlight plain"><figcaption><span>$(this).before('<p>新增段落'+ ($('p').length+1) + '</p>')&#125;)</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">```</div><div class="line">- live():这种方法是将页面的document元素作为事件代理元素，太消耗资源，已经过时。在新版本中推荐用.on()法，即时在旧版本中，也推荐使用.delegate()方法来取代.live()方法。</div><div class="line">- on():在选定的元素上绑定一个或多个事件处理函数，提供绑定事件处理的所有功能。</div><div class="line">  - ``` $(&apos;button&apos;).on(&apos;click&apos;,function()&#123;</div><div class="line"></div><div class="line">     $(&apos;.test&apos;).append(&apos;&lt;p&gt;新增内容&apos;+ ($(&apos;p&apos;).length+1) +&apos;&lt;/p&gt;&apos;)</div><div class="line">      console.log($(&apos;p&apos;).length)</div><div class="line">    &#125;)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>off():用来移除on绑定的事件处理函数。</p>
+<h5 id="5-jquery-如何展示-隐藏元素？"><a href="#5-jquery-如何展示-隐藏元素？" class="headerlink" title="5. jquery 如何展示/隐藏元素？"></a>5. jquery 如何展示/隐藏元素？</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$(document).ready(function()&#123;</div><div class="line">$(&apos;.show&apos;).on(&apos;click&apos;,function()&#123;</div><div class="line">$(&apos;.hide&apos;).show();</div><div class="line">&#125;)</div><div class="line">$(&apos;.hide&apos;).on(&apos;click&apos;,function()&#123;</div><div class="line">$(&apos;.hide&apos;).hide();</div><div class="line">&#125;);</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5 id="6-jquery-动画如何使用？"><a href="#6-jquery-动画如何使用？" class="headerlink" title="6. jquery 动画如何使用？"></a>6. jquery 动画如何使用？</h5><ul>
+<li>语法：$(selector).animate({params},speed,callback);</li>
+<li>使用案例：<ul>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html&gt;</div><div class="line">&lt;head&gt;</div><div class="line">    &lt;script src=&quot;//code.jquery.com/jquery-1.9.1.min.js&quot;&gt;&lt;/script&gt;</div><div class="line">    &lt;meta charset=&quot;utf-8&quot;&gt;</div><div class="line">    &lt;title&gt;JS Bin&lt;/title&gt;</div><div class="line">    &lt;style&gt;</div><div class="line">        #ct &#123;</div><div class="line">            border: 1px solid black;</div><div class="line">            width: 100px;</div><div class="line">            height: 100px;</div><div class="line">            background: red;</div><div class="line">            position: relative;</div><div class="line">        &#125;</div><div class="line">    &lt;/style&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body&gt;</div><div class="line">    &lt;div id=&quot;ct&quot;&gt;animate&lt;/div&gt;</div><div class="line">    &lt;button type=&quot;button&quot;&gt;动画&lt;/button&gt;</div><div class="line">    &lt;script src=&quot;http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js&quot;&gt;&lt;/script&gt;</div><div class="line">    &lt;script&gt;</div><div class="line">        $(&apos;button&apos;).on(&apos;click&apos;, function a() &#123;</div><div class="line"></div><div class="line">            $(&apos;#ct&apos;).animate(&#123;</div><div class="line">                left: &apos;300px&apos;,</div><div class="line">            &#125;, 3000);</div><div class="line">            $(&apos;#ct&apos;).animate(&#123;</div><div class="line">                top: &apos;300px&apos;,</div><div class="line">                left: &apos;0&apos;</div><div class="line">            &#125;, &apos;slow&apos;);</div><div class="line">            $(&apos;#ct&apos;).animate(&#123;</div><div class="line">                left: &apos;300&apos;</div><div class="line">            &#125;, &apos;slow&apos;);</div><div class="line">            $(&apos;#ct&apos;).animate(&#123;</div><div class="line">                left: &apos;0&apos;,</div><div class="line">                top: &apos;0&apos;</div><div class="line">            &#125;, &apos;slow&apos;);</div><div class="line"></div><div class="line">        &#125;);</div><div class="line">    &lt;/script&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="7-如何设置和获取元素内部-HTML-内容？如何设置和获取元素内部文本？"><a href="#7-如何设置和获取元素内部-HTML-内容？如何设置和获取元素内部文本？" class="headerlink" title="7. 如何设置和获取元素内部 HTML 内容？如何设置和获取元素内部文本？"></a>7. 如何设置和获取元素内部 HTML 内容？如何设置和获取元素内部文本？</h5><ul>
+<li>$(‘selector’).html():获取元素内部HTML。</li>
+<li>$(‘selector’).html(‘…’):设置元素内部HTML。</li>
+<li>$(‘selector’).text():获取元素内部文本。</li>
+<li>$(‘selector’).text(‘…’):设置元素内部文本。</li>
+</ul>
+<h5 id="8-如何设置和获取表单用户输入或者选择的内容？如何设置和获取元素属性？"><a href="#8-如何设置和获取表单用户输入或者选择的内容？如何设置和获取元素属性？" class="headerlink" title="8. 如何设置和获取表单用户输入或者选择的内容？如何设置和获取元素属性？"></a>8. 如何设置和获取表单用户输入或者选择的内容？如何设置和获取元素属性？</h5><ul>
+<li>$(‘selector’).val():获取表单用户输入值;</li>
+<li>$(‘selector’).val(‘…’):设置输入值;</li>
+<li>$(‘selector’).attr(‘name’):获取元素属性;</li>
+<li>$(‘selector’).attr(‘name’,’xxx’):设置元素属性的值;</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/05/jQuery常见方法-ajax/" rel="next" title="jQuery常见方法&ajax">
+                <i class="fa fa-chevron-left"></i> jQuery常见方法&ajax
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="chenwei" />
+          <p class="site-author-name" itemprop="name">chenwei</p>
+          <p class="site-description motion-element" itemprop="description">呵呵呵</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">11</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#代码部分"><span class="nav-number">1.</span> <span class="nav-text">代码部分</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-说说库和框架的区别？"><span class="nav-number">1.0.0.0.1.</span> <span class="nav-text">1. 说说库和框架的区别？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-jquery-能做什么？"><span class="nav-number">1.0.0.0.2.</span> <span class="nav-text">2. jquery 能做什么？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-jquery-对象和-DOM-原生对象有什么区别？如何转化？"><span class="nav-number">1.0.0.0.3.</span> <span class="nav-text">3. jquery 对象和 DOM 原生对象有什么区别？如何转化？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-jquery中如何绑定事件？bind、unbind、delegate、live、on、off都有什么作用？推荐使用哪种？使用on绑定事件使用事件代理的写法？"><span class="nav-number">1.0.0.0.4.</span> <span class="nav-text">4. jquery中如何绑定事件？bind、unbind、delegate、live、on、off都有什么作用？推荐使用哪种？使用on绑定事件使用事件代理的写法？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-jquery-如何展示-隐藏元素？"><span class="nav-number">1.0.0.0.5.</span> <span class="nav-text">5. jquery 如何展示/隐藏元素？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-jquery-动画如何使用？"><span class="nav-number">1.0.0.0.6.</span> <span class="nav-text">6. jquery 动画如何使用？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-如何设置和获取元素内部-HTML-内容？如何设置和获取元素内部文本？"><span class="nav-number">1.0.0.0.7.</span> <span class="nav-text">7. 如何设置和获取元素内部 HTML 内容？如何设置和获取元素内部文本？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-如何设置和获取表单用户输入或者选择的内容？如何设置和获取元素属性？"><span class="nav-number">1.0.0.0.8.</span> <span class="nav-text">8. 如何设置和获取表单用户输入或者选择的内容？如何设置和获取元素属性？</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">chenwei</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

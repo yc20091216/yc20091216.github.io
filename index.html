@@ -238,6 +238,163 @@
             
               
                 
+                <a class="post-title-link" href="/2016/12/26/jQuery DOM/" itemprop="url">
+                  jQuery-DOM
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-26T22:36:57+08:00" content="2016-12-26">
+              2016-12-26
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="代码部分"><a href="#代码部分" class="headerlink" title="代码部分"></a>代码部分</h1><h5 id="1-说说库和框架的区别？"><a href="#1-说说库和框架的区别？" class="headerlink" title="1. 说说库和框架的区别？"></a>1. 说说库和框架的区别？</h5><ul>
+<li>库：将代码集合成一个产品，提供给开发者调用。面向对象的代码组织而成的叫类库，面向过程组织而成的叫函数库。</li>
+<li>框架：为解决一个(一类)问题而开发的产品，框架用户一般只需要使用框架提供的类或函数，即可实现全部功能。</li>
+<li>区别：库提供更灵活的选择，需要自己组织。框架更具有针对性，提供一整套完整的代码。</li>
+</ul>
+<hr>
+<h5 id="2-jquery-能做什么？"><a href="#2-jquery-能做什么？" class="headerlink" title="2. jquery 能做什么？"></a>2. jquery 能做什么？</h5><ul>
+<li>封装部分JavaScript代码，API友好。<ol>
+<li>$(“css选择器”) 代替了 document.getElementsByTagName(“”)、document.getElementById(“”)…</li>
+<li>$(“css选择器”).css(“color”,”red”) 代替了 document.getElementById(“”).style.color = “red”。</li>
+<li>$(“css选择器”).text(“”) 一个api同时具有读跟写的功能。($(“div”).text(“你好吗”);)。</li>
+<li>$(“css选择器”).on(“click”,function (){}),监听事件。</li>
+</ol>
+</li>
+</ul>
+<hr>
+<h5 id="3-jquery-对象和-DOM-原生对象有什么区别？如何转化？"><a href="#3-jquery-对象和-DOM-原生对象有什么区别？如何转化？" class="headerlink" title="3. jquery 对象和 DOM 原生对象有什么区别？如何转化？"></a>3. jquery 对象和 DOM 原生对象有什么区别？如何转化？</h5><ul>
+<li>DOM原生对象：w3c标准用于操作文档的API.</li>
+<li>jQuery对象：包装DOM对象产生的对象。</li>
+<li>区别：DOM原生对象使用DOM原生对象的方法，jQuery对象使用jQuery对象的方法。</li>
+<li>转化：<ul>
+<li>DOM原生对象转化为jQuery对象：$div = $(document.getElementsByTagName(‘div’));</li>
+<li>jQuery对象转化为DOM原生对象：div = $div[index];</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h5 id="4-jquery中如何绑定事件？bind、unbind、delegate、live、on、off都有什么作用？推荐使用哪种？使用on绑定事件使用事件代理的写法？"><a href="#4-jquery中如何绑定事件？bind、unbind、delegate、live、on、off都有什么作用？推荐使用哪种？使用on绑定事件使用事件代理的写法？" class="headerlink" title="4. jquery中如何绑定事件？bind、unbind、delegate、live、on、off都有什么作用？推荐使用哪种？使用on绑定事件使用事件代理的写法？"></a>4. jquery中如何绑定事件？bind、unbind、delegate、live、on、off都有什么作用？推荐使用哪种？使用on绑定事件使用事件代理的写法？</h5><ul>
+<li>bin():为一个元素绑定一个或多个事件。<ul>
+<li>$(‘button’).bind(‘click’,function(){console.log(this)});</li>
+<li>$(‘p’).bind(‘mouseenter mouseleave’,function(){$(this).toggleClass(‘change’)})；</li>
+</ul>
+</li>
+<li>unbind():$(‘p’)解除该元素绑定的事件。</li>
+<li><p>delegate():为指定的元素（属于被选元素的子元素）添加一个或多个事件处理程序，并规定当这些事件发生时运行的函数；适用于当前或未来的元素（比如由脚本创建的新元素）。</p>
+<ul>
+<li><figure class="highlight plain"><figcaption><span>$(this).before('<p>新增段落'+ ($('p').length+1) + '</p>')&#125;)</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">```</div><div class="line">- live():这种方法是将页面的document元素作为事件代理元素，太消耗资源，已经过时。在新版本中推荐用.on()法，即时在旧版本中，也推荐使用.delegate()方法来取代.live()方法。</div><div class="line">- on():在选定的元素上绑定一个或多个事件处理函数，提供绑定事件处理的所有功能。</div><div class="line">  - ``` $(&apos;button&apos;).on(&apos;click&apos;,function()&#123;</div><div class="line"></div><div class="line">     $(&apos;.test&apos;).append(&apos;&lt;p&gt;新增内容&apos;+ ($(&apos;p&apos;).length+1) +&apos;&lt;/p&gt;&apos;)</div><div class="line">      console.log($(&apos;p&apos;).length)</div><div class="line">    &#125;)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>off():用来移除on绑定的事件处理函数。</p>
+<h5 id="5-jquery-如何展示-隐藏元素？"><a href="#5-jquery-如何展示-隐藏元素？" class="headerlink" title="5. jquery 如何展示/隐藏元素？"></a>5. jquery 如何展示/隐藏元素？</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$(document).ready(function()&#123;</div><div class="line">$(&apos;.show&apos;).on(&apos;click&apos;,function()&#123;</div><div class="line">$(&apos;.hide&apos;).show();</div><div class="line">&#125;)</div><div class="line">$(&apos;.hide&apos;).on(&apos;click&apos;,function()&#123;</div><div class="line">$(&apos;.hide&apos;).hide();</div><div class="line">&#125;);</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5 id="6-jquery-动画如何使用？"><a href="#6-jquery-动画如何使用？" class="headerlink" title="6. jquery 动画如何使用？"></a>6. jquery 动画如何使用？</h5><ul>
+<li>语法：$(selector).animate({params},speed,callback);</li>
+<li>使用案例：<ul>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html&gt;</div><div class="line">&lt;head&gt;</div><div class="line">    &lt;script src=&quot;//code.jquery.com/jquery-1.9.1.min.js&quot;&gt;&lt;/script&gt;</div><div class="line">    &lt;meta charset=&quot;utf-8&quot;&gt;</div><div class="line">    &lt;title&gt;JS Bin&lt;/title&gt;</div><div class="line">    &lt;style&gt;</div><div class="line">        #ct &#123;</div><div class="line">            border: 1px solid black;</div><div class="line">            width: 100px;</div><div class="line">            height: 100px;</div><div class="line">            background: red;</div><div class="line">            position: relative;</div><div class="line">        &#125;</div><div class="line">    &lt;/style&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body&gt;</div><div class="line">    &lt;div id=&quot;ct&quot;&gt;animate&lt;/div&gt;</div><div class="line">    &lt;button type=&quot;button&quot;&gt;动画&lt;/button&gt;</div><div class="line">    &lt;script src=&quot;http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js&quot;&gt;&lt;/script&gt;</div><div class="line">    &lt;script&gt;</div><div class="line">        $(&apos;button&apos;).on(&apos;click&apos;, function a() &#123;</div><div class="line"></div><div class="line">            $(&apos;#ct&apos;).animate(&#123;</div><div class="line">                left: &apos;300px&apos;,</div><div class="line">            &#125;, 3000);</div><div class="line">            $(&apos;#ct&apos;).animate(&#123;</div><div class="line">                top: &apos;300px&apos;,</div><div class="line">                left: &apos;0&apos;</div><div class="line">            &#125;, &apos;slow&apos;);</div><div class="line">            $(&apos;#ct&apos;).animate(&#123;</div><div class="line">                left: &apos;300&apos;</div><div class="line">            &#125;, &apos;slow&apos;);</div><div class="line">            $(&apos;#ct&apos;).animate(&#123;</div><div class="line">                left: &apos;0&apos;,</div><div class="line">                top: &apos;0&apos;</div><div class="line">            &#125;, &apos;slow&apos;);</div><div class="line"></div><div class="line">        &#125;);</div><div class="line">    &lt;/script&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="7-如何设置和获取元素内部-HTML-内容？如何设置和获取元素内部文本？"><a href="#7-如何设置和获取元素内部-HTML-内容？如何设置和获取元素内部文本？" class="headerlink" title="7. 如何设置和获取元素内部 HTML 内容？如何设置和获取元素内部文本？"></a>7. 如何设置和获取元素内部 HTML 内容？如何设置和获取元素内部文本？</h5><ul>
+<li>$(‘selector’).html():获取元素内部HTML。</li>
+<li>$(‘selector’).html(‘…’):设置元素内部HTML。</li>
+<li>$(‘selector’).text():获取元素内部文本。</li>
+<li>$(‘selector’).text(‘…’):设置元素内部文本。</li>
+</ul>
+<h5 id="8-如何设置和获取表单用户输入或者选择的内容？如何设置和获取元素属性？"><a href="#8-如何设置和获取表单用户输入或者选择的内容？如何设置和获取元素属性？" class="headerlink" title="8. 如何设置和获取表单用户输入或者选择的内容？如何设置和获取元素属性？"></a>8. 如何设置和获取表单用户输入或者选择的内容？如何设置和获取元素属性？</h5><ul>
+<li>$(‘selector’).val():获取表单用户输入值;</li>
+<li>$(‘selector’).val(‘…’):设置输入值;</li>
+<li>$(‘selector’).attr(‘name’):获取元素属性;</li>
+<li>$(‘selector’).attr(‘name’,’xxx’):设置元素属性的值;</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/12/05/jQuery常见方法-ajax/" itemprop="url">
                   jQuery常见方法&ajax
                 </a>
@@ -2319,111 +2476,13 @@ console.log(b);     //  is not defined;
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/31/hello-world/" itemprop="url">
-                  Hello World
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-31T00:30:21+08:00" content="2016-08-31">
-              2016-08-31
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -2462,7 +2521,7 @@ console.log(b);     //  is not defined;
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-count">11</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
