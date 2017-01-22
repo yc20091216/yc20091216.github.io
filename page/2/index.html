@@ -238,6 +238,221 @@
             
               
                 
+                <a class="post-title-link" href="/2016/09/01/JS-Grammar/" itemprop="url">
+                  JS Grammar
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-01T11:25:02+08:00" content="2016-09-01">
+              2016-09-01
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="CSS和JS在网页中的放置顺序是怎样的？"><a href="#CSS和JS在网页中的放置顺序是怎样的？" class="headerlink" title="CSS和JS在网页中的放置顺序是怎样的？"></a>CSS和JS在网页中的放置顺序是怎样的？</h1><ul>
+<li>CSS应放置在：<code>&lt;head&gt;~&lt;style&gt;&lt;/style&gt;~&lt;/head&gt;</code></li>
+</ul>
+<ul>
+<li>js应放置在：<code>HTML文档的最后，&lt;/body&gt;标签之前</code><br>各个浏览器渲染机制可能略有偏差，但为了防止出现白屏或者FOUC等情况，JS放置位置还有可能导致网页加载出错，所以应当将JS和CSS分别放置在上面规定的位置。</li>
+</ul>
+<hr>
+<h1 id="解释白屏和FOUC"><a href="#解释白屏和FOUC" class="headerlink" title="解释白屏和FOUC"></a>解释白屏和FOUC</h1><ul>
+<li><p>白屏：浏览器的页面在切换时，由于其页面加载机制，在跳转到下一个页面时，先要请求联网、载入页面代码、构建dom、渲染，最后才显示出来。如果样式文件较大，又多，把样式放底部，结合网速和计算机性能，对于IE浏览器，在某些场景下会出现白屏，而不是内容逐步展现。@import标签即使放在头部也有可能出现白屏。</p>
+</li>
+<li><p>FOUC：将样式放在底部或引入@import，IE 会先加载整个 HTML 文档的 DOM ，然后再去导入外部的 CSS 文件，因此，在页面 DOM 加载完成到 CSS 导入完成中间 会有一段时间页面上的内容是没有样式的，时间长短跟网速和计算机性能有关。</p>
+</li>
+<li><p>JavaScript加载的同时会阻塞后面内容的呈现和阻塞其他组件的下载，或者将JS文件引入放顶部也同样会导致白屏或者FOUC出现的可能。</p>
+</li>
+</ul>
+<hr>
+<h1 id="async和defer的作用是什么？有什么区别"><a href="#async和defer的作用是什么？有什么区别" class="headerlink" title="async和defer的作用是什么？有什么区别"></a>async和defer的作用是什么？有什么区别</h1><pre><code>首先脚本需要可用，它们仅适用于外部脚本。
+</code></pre><ul>
+<li><p>async：加载和渲染后续文档元素的过程将和 script.js 的加载与执行并行进行（当页面继续进行解析时，脚本将被执行）。</p>
+</li>
+<li><p>defer：加载后续文档元素的过程将和 script.js 的加载并行进行（异步），但 script.js 的执行要在所有元素解析完成之后，DOMContentLoaded 事件触发之前完成。</p>
+</li>
+<li><p>区别：async：不保证加载JS后执行的顺序。defer：脚本延迟到文档解析和显示后执行，有顺序。</p>
+</li>
+</ul>
+<hr>
+<h1 id="简述网页的渲染机制"><a href="#简述网页的渲染机制" class="headerlink" title="简述网页的渲染机制"></a>简述网页的渲染机制</h1><ul>
+<li>解析HTML标签，构建DOM树。</li>
+<li>解析CSS标签，构建CSSOM树。</li>
+<li>通过DOM Tree 和 CSS Rule Tree 来构造 Rendering Tree。</li>
+<li>在渲染树的基础上，计算每个节点的几何机构。</li>
+<li>通过调用操作系统Native GUI的API绘制。</li>
+</ul>
+<h1 id="JavaScript-定义了几种数据类型-哪些是简单类型-哪些是复杂类型"><a href="#JavaScript-定义了几种数据类型-哪些是简单类型-哪些是复杂类型" class="headerlink" title="JavaScript 定义了几种数据类型? 哪些是简单类型?哪些是复杂类型?"></a>JavaScript 定义了几种数据类型? 哪些是简单类型?哪些是复杂类型?</h1><ul>
+<li>数值(number)：整数、小数（浮点数）。</li>
+<li>字符串(string)：由零个或多个字符构成，包括（但不限于）字母、数字、标点符号和空格。字符串必须包括在单、双引号里。</li>
+<li>布尔值：只有两个可选值，true或者false。</li>
+<li>null：表示空缺，此处应该有一个值，但目前为空。</li>
+<li>undefined：表示“未定义”或不存在。</li>
+<li>对象：各种值组成的集合（复杂类型）。</li>
+</ul>
+<hr>
+<h1 id="NaN、undefined、null分别代表什么"><a href="#NaN、undefined、null分别代表什么" class="headerlink" title="NaN、undefined、null分别代表什么?"></a>NaN、undefined、null分别代表什么?</h1><p>NaN：（Not a Number），非数值，不等于任何值包括它本身。<br>undefined：”未定义”或不存在。<br>null：表示空值，即该处的值现在为空。比如，调用函数时，不需要传入某个参数，这时就可以传入null。</p>
+<hr>
+<h1 id="typeof和instanceof的作用和区别"><a href="#typeof和instanceof的作用和区别" class="headerlink" title="typeof和instanceof的作用和区别?"></a>typeof和instanceof的作用和区别?</h1><ul>
+<li><p>typeof：typeof运算符可以返回一个值的数据类型。<br><code>var a=1; b=&quot;b&quot;; c=true
+typeof a;  //&quot;number&quot;
+typeof b;   //&quot;string&quot;
+typeof c;  //&quot;boolean&quot;</code></p>
+</li>
+<li><p>instanceof：主要的目的是检测引用类型,判断对象是Array，object,function。<br><code>var array=new Array();
+console.log(array instanceof Array);  // true</code></p>
+</li>
+<li><p>区别：<strong>typeof和instanceof的目的都是检测变量的类型,两个的区别在于typeof一般是检测的是基本数据类型,instanceof主要检测的是引用类型!</strong></p>
+</li>
+</ul>
+<hr>
+<h1 id="代码部分："><a href="#代码部分：" class="headerlink" title="代码部分："></a>代码部分：</h1><hr>
+<h5 id="1-完成如下代码判断一个变量是否是数字、字符串、布尔、函数-（难度-）"><a href="#1-完成如下代码判断一个变量是否是数字、字符串、布尔、函数-（难度-）" class="headerlink" title="1. 完成如下代码判断一个变量是否是数字、字符串、布尔、函数 （难度*）"></a>1. 完成如下代码判断一个变量是否是数字、字符串、布尔、函数 （难度*）</h5><pre><code>function isNumber(el){
+  if(typeof el === &quot;number&quot;){
+  return true;
+}else{
+  return false;
+}
+}
+
+
+function isString(el){
+  if(typeof el === &quot;string&quot;){
+  return true;
+}else{
+  return false;
+}
+}
+
+
+function isBoolean(el){
+  if(typeof el === &quot;boolean&quot;){
+  return true;
+}else{
+  return false;
+}
+}
+  function isFunction(el){
+  if(typeof el === &quot;function&quot;){
+  return true;
+}else{
+  return false;
+}
+}
+var a = 2, b = &quot;jirengu&quot;, c = false;
+alert( isNumber(a) ); //true
+alert( isString(a) ); //false
+alert( isString(b) ); //true
+alert( isBoolean(c) ); //true
+alert( isFunction(a)); //false
+alert( isFunction( isNumber ) ); //true
+</code></pre><hr>
+<h5 id="2-以下代码的输出结果是-（难度-）"><a href="#2-以下代码的输出结果是-（难度-）" class="headerlink" title="2. 以下代码的输出结果是?（难度**）"></a>2. 以下代码的输出结果是?（难度**）</h5><pre><code>console.log(1+1);   //  2;  两个数值
+console.log(&quot;2&quot;+&quot;4&quot;);  // &quot;24&quot;;  两个字符串
+console.log(2+&quot;4&quot;);  // &quot;24&quot;;  数值加字符串
+console.log(+new Date());  //1472696605678;
+console.log(+&quot;4&quot;);  4;
+</code></pre><h5 id="3-以下代码的输出结果是-（难度-）"><a href="#3-以下代码的输出结果是-（难度-）" class="headerlink" title="3. 以下代码的输出结果是? （难度*）"></a>3. 以下代码的输出结果是? （难度<em>*</em>）</h5><pre><code>var a = 1;
+a+++a;  //a++===1+1===2; 2+1===3;
+typeof a+2; // &quot;number2&quot; ,先执行typeof a，再执行+2；
+</code></pre><h5 id="4-遍历数组，把数组里的打印数组每一项的平方-（难度-）"><a href="#4-遍历数组，把数组里的打印数组每一项的平方-（难度-）" class="headerlink" title="4. 遍历数组，把数组里的打印数组每一项的平方 （难度**）"></a>4. 遍历数组，把数组里的打印数组每一项的平方 （难度**）</h5><pre><code>var arr = [3,4,5]// todo..// 输出 9, 16, 25
+
+var arr = [3,4,5];
+for(var i=0;i&lt;arr.length;i++){
+console.log(arr[i]*arr[i])
+}
+</code></pre><h5 id="5-遍历-JSON-打印里面的值-（难度-）"><a href="#5-遍历-JSON-打印里面的值-（难度-）" class="headerlink" title="5. 遍历 JSON, 打印里面的值 （难度**）"></a>5. 遍历 JSON, 打印里面的值 （难度**）</h5><pre><code>var obj = { name: &apos;hunger&apos;, sex: &apos;male&apos;, age: 28}//todo ...// 输出   name: hunger, sex: male, age:28
+
+for (var i in obj){
+ console.log(i+&quot;:&quot;+obj[i]);
+}
+</code></pre><h5 id="6-下面代码的输出是-为什么-（难度-）"><a href="#6-下面代码的输出是-为什么-（难度-）" class="headerlink" title="6. 下面代码的输出是? 为什么 （难度*）"></a>6. 下面代码的输出是? 为什么 （难度<em>*</em>）</h5><pre><code>                        //变量提升,但不赋值。
+console.log(a);        // undefined
+var a = 1;            //  a=1;
+console.log(a);      //   1;
+console.log(b);     //  is not defined;
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/08/31/hello-world/" itemprop="url">
                   Hello World
                 </a>
@@ -364,7 +579,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">11</span>
+              <span class="site-state-item-count">12</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
